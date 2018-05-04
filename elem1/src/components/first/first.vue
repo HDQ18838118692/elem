@@ -2,11 +2,12 @@
   <div class="body">
     <div class="head">
       <div class="head1">
-        <div class="logo">ele.me</div>
+        <div class="logo">
+          <router-link to="/">ele.me</router-link></div>
         <div class="login">
           <router-link to="/login">登录</router-link>
           <span>|</span>
-          <router-link to="/">注册</router-link>
+          <router-link to="/login">注册</router-link>
         </div>
       </div>
     </div>
@@ -24,12 +25,18 @@
           </div>
         </div>
         <div class="two">
-          <router-link to="/">
+          <router-link to="/shop">
             {{guess.name}}
             <span>
     >
   </span>
           </router-link>
+          <!--<router-link :to="{path:'city',name:'city',params:{id:guess.id}}">-->
+            <!--{{guess.name}}-->
+            <!--<span>-->
+    <!--&gt;-->
+  <!--</span>-->
+          <!--</router-link>-->
         </div>
       </div>
       </div>
@@ -40,7 +47,9 @@
         <div class="hot2">热门城市</div>
         <div class="hot3">
           <ul style="overflow: hidden">
-            <li v-for="city in hotCity" style="float: left;width: 24.7%">{{city.name}}</li>
+            <li v-for="city in hotCity" style="float: left;width: 24.7%">
+              <router-link :to="{path:'city',name:'city',params:{id:city.id}}">{{city.name}}</router-link>
+            </li>
           </ul>
         </div>
         </div>
@@ -54,7 +63,7 @@
             <div class="five3">{{key}}</div>
             <ul style="overflow: hidden">
               <li v-for="group in value" style="float: left;width: 24.7%; white-space: nowrap;overflow: hidden;text-overflow :ellipsis;">
-                {{group.name}}
+                <router-link :to="{path:'city',name:'city',params:{id:group.id}}">{{group.name}}</router-link>
               </li>
             </ul>
           </div>
@@ -214,6 +223,9 @@
     text-align: center;
     line-height: 0.5rem;
   }
+  .hot3 ul li a{
+    color: #3190e8;
+  }
   .five{
     margin-top: 0.15rem;
   }
@@ -251,6 +263,9 @@ position: absolute;
     text-align: center;
     line-height: 0.5rem;
     font-size: 0.18rem;
+
+  }
+  .five4 ul li a{
     color: #666;
   }
 </style>
