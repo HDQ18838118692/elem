@@ -8,6 +8,16 @@
         <router-link to="/">注册</router-link>
       </div>
     </div>
+      <div>
+    <div>
+      <div>
+        当前定位城市：
+      </div>
+      <div>
+        定位不准时，请在城市列表中选择
+      </div>
+    </div>
+      </div>
     </div>
 </template>
 
