@@ -1,69 +1,165 @@
 <template>
-    <div class="login">
-      <div class="header">
-        <router-link to="/"><</router-link>
-        密码登录
-      </div>
-      <form >
-        <input type="text" placeholder="账号">
-        <input type="password" placeholder="密码">
-        <input type="text" placeholder="验证码">
-      </form>
-      <p>温馨提示：未注册过的账号，登录时将自动注册</p>
-      <p>注册过的用户可凭账号密码登录</p>
-     <div class="btn"> <button @click="submit">登录</button></div>
-      <div class="reset">
-        <a href="">重置密码?</a>
-      </div>
+  <div class="login">
+    <div class="header">
+      <router-link to="/"><</router-link>
+      密码登录
     </div>
+    <form>
+      <input type="text" placeholder="账号" v-model="v1">
+      <input type="password" placeholder="密码" v-model="v2">
+      <div class="circle" @click="chcolor"></div>
+      <span class="a1">abc...</span>
+      <input type="text" placeholder="验证码" v-model="v3">
+      <div class="yz"><img :src="imgs"></div>
+      <span class="yz1" @click="hqyz">看不清</span>
+      <span class="yz2" @click="hqyz">换一张</span>
+
+    </form>
+    <p>温馨提示：未注册过的账号，登录时将自动注册</p>
+    <p>注册过的用户可凭账号密码登录</p>
+    <div class=" btn">
+      <button @click="submitA">登录</button>
+    </div>
+    <div class="reset">
+      <a href="">重置密码?</a>
+    </div>
+  </div>
 </template>
 
 <script>
-  // let apid="http://cangdu.org:8001/v2/login";
-  // let apiy="http://cangdu.org:8001/v1/captchas";
-    export default {
-        name: "login",
-      created(){
+  import Vue from "vue";
+
+  let apid = "https://elm.cangdu.org/v2/login";
+  let apiy = "https://elm.cangdu.org/v1/captchas";
+
+  export default {
+    name: "login",
+    data() {
+      return {
+        imgs: null,
+
+          v1:null,
+          v2:null,
+          v3:null
+
+      }
+    },
+    created() {
+
+      Vue.axios.post(apiy).then((res) => {
+
+        this.imgs = res.data.code;
+      })
+    },
+
+    methods: {
+      submitA() {
+        // let v1 = document.getElementsByTagName("input")[0].value;
+        //
+        // let v2 = document.getElementsByTagName("input")[1].value;
+        // let v3 = document.getElementsByTagName("input")[2].value;
+        // console.log(v3)
+        // Vue.axios.post(apid, {
+        //   username: this.v1,
+        //   password: this.v2,
+        //   captcha_code:this.v3
+        // }).then((res) => {
+        //   console.log(res.data);
+        // })
+        var requestObj;
+        var data = {username:this.v1, password:this.v2, captcha_code:this.v3};
+        if (window.XMLHttpRequest) {
+          requestObj = new XMLHttpRequest();
+        } else {
+          requestObj = new ActiveXObject;
+        }
+
+        let sendData = '';
+       // if (type == 'POST') {
+          sendData = JSON.stringify(data);
+        //}
+
+        requestObj.open("post", apid, true);
+        requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        requestObj.send(sendData);
+
+        requestObj.onreadystatechange = () => {
+          if (requestObj.readyState == 4) {
+            if (requestObj.status == 200) {
+              let obj = requestObj.response
+              if (typeof obj !== 'object') {
+                obj = JSON.parse(obj);
+              }
+              //resolve(obj)
+              console.log(obj)
+            } else {
+              //reject(requestObj)
+            }
+          }
+        }
+
+
 
       },
-      methods:{
-          submit(){
+      chcolor() {
+        var span1 = document.getElementsByTagName("span")[0];
+        var div1 = document.getElementsByClassName("circle")[0];
+        var input2 = document.getElementsByTagName("input")[1];
+        if (div1.offsetLeft <= 315) {
+          div1.style.right = "0.1rem";
+          span1.style.backgroundColor = "#4cd964";
+          input2.type = "text";
+        } else {
+          div1.style.right = "0.4rem";
+          span1.style.backgroundColor = "gainsboro";
+          input2.type = "password";
+        }
 
-          }
+      },
+      hqyz() {
+        Vue.axios.post(apiy).then((res) => {
+          console.log(res.data);
+          this.imgs = res.data.code;
+        })
       }
     }
+  }
 </script>
 
 <style scoped>
-  .login{
+  .login {
     width: 100%;
     height: 8.4rem;
-    background-color:#f5f5f5 ;
+    background-color: #f5f5f5;
   }
-.header{
-  width: 100%;
-  height: 45.7px;
-  background-color: #3190e8;
-  line-height: 45.7px;
-  text-align: center;
-  color: white;
-  font-size: 0.22rem;
-  position: relative;
-}
-  .header a{
+
+  .header {
+    width: 100%;
+    height: 45.7px;
+    background-color: #3190e8;
+    line-height: 45.7px;
+    text-align: center;
+    color: white;
+    font-size: 0.22rem;
+    position: relative;
+  }
+
+  .header a {
     position: absolute;
     left: 0.1rem;
     color: white;
     font-size: 0.3rem;
   }
-  form{
-   margin-top: 0.2rem;
+
+  form {
+    margin-top: 0.2rem;
     width: 100%;
     height: 1.85rem;
-
+    position: relative;
 
   }
-  form input{
+
+  form input {
     width: 100%;
     height: 0.6rem;
     background-color: white;
@@ -72,36 +168,89 @@
     padding-left: 0.2rem;
 
   }
- input::placeholder{
-    color:#666;
+
+  input::placeholder {
+    color: #666;
   }
-  p{
+
+  p {
     color: red;
     font-size: 0.15rem;
     padding: 0.1rem 0.2rem;
   }
-  .btn{
+
+  .btn {
     width: 100%;
     text-align: center;
 
   }
-  button{
-    width:95%;
+
+  button {
+    width: 95%;
     height: 0.6rem;
-    background-color:#4cd964;
+    background-color: #4cd964;
     color: white;
     font-size: 0.2rem;
     border-radius: 0.05rem;
   }
-  .reset{
+
+  .reset {
     width: 100%;
     overflow: hidden;
     margin-top: 0.2rem;
   }
-  .reset a{
+
+  .reset a {
     float: right;
     margin-right: 0.2rem;
-    font-size:0.2rem ;
-    color:#3b95e9 ;
+    font-size: 0.2rem;
+    color: #3b95e9;
   }
+
+  form .a1 {
+    position: absolute;
+    right: 0.1rem;
+    bottom: 0.8rem;
+    width: 0.5rem;
+    padding: 0.02rem 0.05rem;
+    background-color: gainsboro;
+    border-radius: 0.3rem;
+    color: white;
+
+  }
+
+  form .circle {
+    width: 0.35rem;
+    height: 0.35rem;
+    background-color: #f1f1f1;
+    border-radius: 50%;
+    position: absolute;
+    right: 0.4rem;
+    bottom: 0.75rem;
+    z-index: 1;
+    transition: all 0.3s;
+  }
+
+  form .yz1 {
+    position: absolute;
+    right: 0.1rem;
+    font-size: 0.2rem;
+    bottom: 0.35rem;
+  }
+
+  form .yz2 {
+    position: absolute;
+    right: 0.1rem;
+    bottom: 0rem;
+    font-size: 0.2rem;
+    color: #3b95e9;
+
+  }
+
+  .yz {
+    position: absolute;
+    right: 0.8rem;
+    bottom: 0.1rem;
+  }
+
 </style>
