@@ -54,52 +54,14 @@
 
     methods: {
       submitA() {
-        // let v1 = document.getElementsByTagName("input")[0].value;
-        //
-        // let v2 = document.getElementsByTagName("input")[1].value;
-        // let v3 = document.getElementsByTagName("input")[2].value;
-        // console.log(v3)
-        // Vue.axios.post(apid, {
-        //   username: this.v1,
-        //   password: this.v2,
-        //   captcha_code:this.v3
-        // }).then((res) => {
-        //   console.log(res.data);
-        // })
-        var requestObj;
-        var data = {username:this.v1, password:this.v2, captcha_code:this.v3};
-        if (window.XMLHttpRequest) {
-          requestObj = new XMLHttpRequest();
-        } else {
-          requestObj = new ActiveXObject;
-        }
 
-        let sendData = '';
-       // if (type == 'POST') {
-          sendData = JSON.stringify(data);
-        //}
-
-        requestObj.open("post", apid, true);
-        requestObj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        requestObj.send(sendData);
-
-        requestObj.onreadystatechange = () => {
-          if (requestObj.readyState == 4) {
-            if (requestObj.status == 200) {
-              let obj = requestObj.response
-              if (typeof obj !== 'object') {
-                obj = JSON.parse(obj);
-              }
-              //resolve(obj)
-              console.log(obj)
-            } else {
-              //reject(requestObj)
-            }
-          }
-        }
-
-
-
+        Vue.axios.post(apid, {
+          username: this.v1,
+          password: this.v2,
+          captcha_code:this.v3
+        }).then((res) => {
+          console.log(res.data);
+        })
       },
       chcolor() {
         var span1 = document.getElementsByTagName("span")[0];
