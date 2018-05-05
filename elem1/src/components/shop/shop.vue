@@ -1,7 +1,7 @@
 <template>
 <div>
 
-</div>0
+</div>
 </template>
 
 <script>
