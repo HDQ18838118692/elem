@@ -22,8 +22,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="195" />
-    <option name="y" value="263" />
+    <option name="x" value="664" />
+    <option name="y" value="23" />
     <option name="width" value="1113" />
     <option name="height" value="911" />
   </component>
@@ -98,9 +98,6 @@
         </RuleState>
       </list>
     </option>
-  </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
