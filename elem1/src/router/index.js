@@ -24,9 +24,9 @@ export default new Router({
       name:'city',
       component:city
     },
-    {
-      path:'/shop',
-      component:shop
-    }
+    // {
+    //   path:'/shop',
+    //   component:shop
+    // }
   ]
 })

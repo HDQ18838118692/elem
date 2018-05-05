@@ -23,14 +23,27 @@
       <div class="foot1">
       搜索历史
       </div>
+      <div v-if="lshl.length">
+      <div v-for="ls in lshl">
+        <div>{{ls.name}}</div>
+      </div>
+      </div>
     </div>
 
-    <div v-if="search.length">
-<div v-for=" sss in search">
-  <router-link :to="{path:'',name:'',params:{}"></router-link>
-  <h1>{{sss.name}}</h1>
-  <div>{{sss.address}}</div>
+
+
+    <div v-if="search.length" class="show">
+
+<div v-for=" sss in search" class="show1" @click="jl(sss.geohash)">
+  <router-link :to="{path:'shop',name:'shop',params:{geohash:sss.geohash}}" >
+    <h1>{{sss.name}}</h1>
+    <div>{{sss.address}}</div>
+
+  </router-link>
+
+
 </div>
+
     </div>
   </div>
 </template>
@@ -45,7 +58,8 @@
         city: {},
         val:'',
         id:"",
-        search:[]
+        search:[],
+        lshl:[]
       }
     },
     created() {
@@ -57,6 +71,7 @@
         console.log(response.data)
         this.city = response.data
       });
+      console.log(this.lshl)
     },
     methods:{
       submit(){
@@ -64,6 +79,13 @@ var api2="http://cangdu.org:8001/v1/pois?city_id="+this.id+"&keyword="+this.val+
         Vue.axios.get(api2).then((response) => {
           console.log(response.data)
           this.search=response.data
+        });
+      },
+      jl(ppp){
+        var api3=`http://cangdu.org:8001/v2/pois/${ppp}`
+        Vue.axios.get(api3).then((response) => {
+         this.lshl.push(response.data);
+          console.log(this.lshl)
         });
       }
     }
@@ -73,6 +95,7 @@ var api2="http://cangdu.org:8001/v1/pois?city_id="+this.id+"&keyword="+this.val+
 <style scoped>
   .quan{
     background: lightgray;
+    position: relative;
   }
 .head{
   height: 0.62rem;
@@ -133,4 +156,35 @@ var api2="http://cangdu.org:8001/v1/pois?city_id="+this.id+"&keyword="+this.val+
     margin: 0 auto;
     line-height: 0.25rem;
   }
+  .show{
+    position: absolute;
+    left: 0;
+    top:2.1rem ;
+    background: white;
+    border-bottom: 2px solid lightgray;
+    width: 100%;
+  }
+
+  .show1{
+    height: 0.8rem;
+    padding-left: 0.22rem;
+    border-bottom: 1px solid lightgray;
+  }
+  .show1 a{
+    display: block;
+  }
+  .show1 a h1{
+    font-size: 0.22rem;
+    color: black;
+    margin-top: 0.3rem;
+  }
+  .show1 a div{
+    font-size: 0.17rem;
+    color: lightgray;
+    margin-top: 0.2rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
 </style>
