@@ -91,15 +91,15 @@
 <style scoped>
   .login {
     width: 100%;
-    height: 8.4rem;
+    height: 8.3375rem;
     background-color: #f5f5f5;
   }
 
   .header {
     width: 100%;
-    height: 45.7px;
+    height: 0.57rem;
     background-color: #3190e8;
-    line-height: 45.7px;
+    line-height: 0.57rem;
     text-align: center;
     color: white;
     font-size: 0.22rem;
