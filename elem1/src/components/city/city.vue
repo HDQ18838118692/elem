@@ -27,7 +27,7 @@
 
     <div v-if="search.length">
 <div v-for=" sss in search">
-  <router-link :to="{path:'',name:'',params}"></router-link>
+  <router-link :to="{path:'',name:'',params:{}"></router-link>
   <h1>{{sss.name}}</h1>
   <div>{{sss.address}}</div>
 </div>
