@@ -25,18 +25,18 @@
           </div>
         </div>
         <div class="two">
-          <router-link to="/shop">
-            {{guess.name}}
-            <span>
-    >
-  </span>
-          </router-link>
-          <!--<router-link :to="{path:'city',name:'city',params:{id:guess.id}}">-->
+          <!--<router-link to="/shop">-->
             <!--{{guess.name}}-->
             <!--<span>-->
     <!--&gt;-->
   <!--</span>-->
           <!--</router-link>-->
+          <router-link :to="{path:'city',name:'city',params:{id:guess.id}}">
+            {{guess.name}}
+            <span>
+    >
+  </span>
+          </router-link>
         </div>
       </div>
       </div>
@@ -99,7 +99,7 @@
         this.hotCity = response.data
       });
       Vue.axios.get(api3).then((response) => {
-        //console.log(response.data)
+        console.log(response.data)
         this.groupCity = response.data
         this.groupCity = objKeySort(this.groupCity)
 
