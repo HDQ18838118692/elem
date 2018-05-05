@@ -13,7 +13,7 @@
       <div class="search-history" ref="story">
         <p class="p1">搜索历史</p>
         <ul>
-          <li>搜索历史</li>
+          <li v-for="arr in arr2">{{arr}}</li>
         </ul>
         <p class="p2" @click="qk">清空搜索历史</p>
       </div>
@@ -25,30 +25,70 @@
 </template>
 
 <script>
+  import Vue from "vue";
+
+  var arr1 = [];
+  var arr=[];
   export default {
     name: "search",
     data() {
       return {
-        val: null
+        val: null,
+        arr2:[]
       }
+    },created(){
+      this.arr2=JSON.parse(localStorage.getItem("arr1"))
     },
     methods: {
       tijiao() {
         if (this.val) {
           this.$refs.story.style.display = "none";
           this.$refs.jg.style.display = "block";
-          this.$refs.cha.style.display = "block";
+          this.$refs.cha.style.display="block"
+          arr.push(this.val);
+         //数组去重
+          for(var i = 0; i < arr.length; i++) {
+            var flag = true;
+            for(var j = 0; j < arr1.length; j++) {
+              if(arr[i].geohash== arr1[j].geohash) {
+                flag = false;
+              };
+            };
+            if(flag) {
+              arr1.push(arr[i]);
+            };
+          };
+          localStorage.setItem("arr1",JSON.stringify(arr1))
         }
       },
       cha() {
         this.$refs.story.style.display = "block";
         this.$refs.jg.style.display = "none";
         this.$refs.cha.style.display = "none";
+        this.val="";
       },
-      qk(){
+      qk() {
+        localStorage.removeItem("arr1");
+        this.arr2=[];
         this.$refs.story.style.display = "none";
+
       }
 
+    },
+    watch:{
+      val:function (val) {
+        this.$refs.cha.style.display="block"
+        if(!val){
+          if(!localStorage.getItem("arr1")){
+            this.arr2=[]
+          }else{
+            this.arr2=JSON.parse(localStorage.getItem("arr1"))
+            this.$refs.story.style.display = "block";
+            this.$refs.jg.style.display = "none";
+          }
+
+        }
+      }
     }
   }
 </script>
