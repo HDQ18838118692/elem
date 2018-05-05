@@ -50,7 +50,7 @@
           for(var i = 0; i < arr.length; i++) {
             var flag = true;
             for(var j = 0; j < arr1.length; j++) {
-              if(arr[i].geohash== arr1[j].geohash) {
+              if(arr[i]== arr1[j]) {
                 flag = false;
               };
             };
