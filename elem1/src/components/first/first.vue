@@ -187,7 +187,7 @@
   .two{
     background: white;
     height: 0.5rem;
-    border-bottom: 1px solid #e4e4e4;
+    border-bottom: 0.0125rem solid #e4e4e4;
     margin-bottom: 0.15rem;
   }
   .two a{
@@ -214,12 +214,12 @@
     margin: 0 auto;
   }
   .hot3 ul{
-    border-bottom:1.1px solid #e4e4e4 ;
+    border-bottom:0.0125rem solid #e4e4e4 ;
   }
   .hot3 ul li{
     height: 0.5rem;
-    border-left: 1px solid #e4e4e4;
-    border-top: 1px solid #e4e4e4;
+    border-left: 0.0125rem solid #e4e4e4;
+    border-top: 0.0125rem solid #e4e4e4;
     text-align: center;
     line-height: 0.5rem;
   }
@@ -249,17 +249,17 @@ position: absolute;
 
   }
   .five4{
-    border-top: 1px solid #c9c9c9;
+    border-top: 0.0125rem solid #c9c9c9;
     margin-bottom: 0.2rem;
     background: white;
   }
   .five4 ul{
-    border-top:1.1px solid #e4e4e4 ;
+    border-top:0.0125rem solid #e4e4e4 ;
   }
   .five4 ul li{
     height: 0.5rem;
-    border-right: 1px solid #e4e4e4;
-    border-bottom: 1px solid #e4e4e4;
+    border-right: 0.0125rem solid #e4e4e4;
+    border-bottom: 0.0125rem solid #e4e4e4;
     text-align: center;
     line-height: 0.5rem;
     font-size: 0.18rem;

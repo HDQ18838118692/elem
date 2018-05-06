@@ -34,8 +34,8 @@ export default new Router({
       name: 'shop',
       component: shop,
       children: [{
-        path: '/',
-        name: 'waimai',
+        path: '/shop/waimai/',
+        name:'waimai',
         component: waimai
 
       }, {

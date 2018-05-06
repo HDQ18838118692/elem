@@ -26,7 +26,7 @@
 			</div>
 			<div v-if="count.length">
 				<div v-for="ls in count" class="one">
-					<router-link :to="{path:'shop',name:'shop',params:{geohash:ls.geohash}}">
+					<router-link :to="{path:`/shop/waimai/${ls.geohash}`,name:'waimai',params:{geohash:ls.geohash}}">
 						<div class="one1">{{ls.name}}</div>
 						<div class="one2">{{ls.address}}</div>
 
@@ -42,7 +42,7 @@
 		<div v-if="search.length" class="show">
 
 			<div v-for=" sss in search" class="show1" @click="jl(sss.geohash)">
-				<router-link :to="{path:'shop',name:'shop',params:{geohash:sss.geohash}}">
+				<router-link :to="{path:`/shop/waimai/${sss.geohash}`,name:'waimai',params:{geohash:sss.geohash}}">
 					<h1>{{sss.name}}</h1>
 					<div>{{sss.address}}</div>
 
@@ -81,7 +81,7 @@
 			this.id = this.$route.params.id;
 
 			var api1 = "http://cangdu.org:8001/v1/cities/" + this.id;
-			console.log(api1);
+//			console.log(api1);
 			Vue.axios.get(api1).then((response) => {
 				//      console.log(response.data)
 				this.city = response.data

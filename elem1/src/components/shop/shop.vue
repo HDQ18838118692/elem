@@ -3,7 +3,7 @@
     <router-view></router-view>
 
       <ul class="footer">
-        <router-link to="/shop">
+        <router-link to="/shop/waimai">
           <li><img src="" alt=""><span>外卖</span></li>
         </router-link>
         <router-link to="/shop/search">
