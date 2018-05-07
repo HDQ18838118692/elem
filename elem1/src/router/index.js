@@ -27,7 +27,7 @@ export default new Router({
       component: login
     },
     {
-      path: '/city/:id',
+      path: '/city/${id}',
       name: 'city',
       component: city
     },

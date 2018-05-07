@@ -8,9 +8,8 @@ import axios from "axios";
 import vueAxios from "vue-axios";
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-// import Vuex from 'vuex'
-//
-// Vue.use(Vuex)
+var VueTouch = require('vue-touch')
+Vue.use(VueTouch, {name: 'v-touch'})
 Vue.use(ElementUI);
 Vue.use(vueAxios,axios);
 Vue.config.productionTip = false

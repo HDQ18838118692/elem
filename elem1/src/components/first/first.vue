@@ -141,7 +141,9 @@
     line-height: 0.575rem;
     float: left;
   }
-
+.logo a{
+	font-size: 0.2rem;
+}
   .login {
     float: right;
     line-height: 0.575rem;
