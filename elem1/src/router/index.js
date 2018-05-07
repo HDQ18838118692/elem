@@ -9,6 +9,8 @@ import waimai from "@/components/waimai/waimai";
 import search from "@/components/search/search";
 import dingdan from "@/components/dingdan/dingdan";
 import my from "@/components/my/my";
+import usermes from "@/components/usermes/usermes";
+import setusername from "@/components/setusername/setusername";
 
 Vue.use(Router)
 
@@ -35,7 +37,7 @@ export default new Router({
       component: shop,
       children: [{
         path: '/shop/waimai/',
-        name:'waimai',
+        name: 'waimai',
         component: waimai
 
       }, {
@@ -52,6 +54,16 @@ export default new Router({
         name: 'my',
         component: my
       }]
+    },
+    {
+      path: '/usermes/:phone',
+      name: 'usermes',
+      component: usermes
+    },
+    {
+      path:"/setusername",
+      name:'setusername',
+      component:setusername
     }
   ]
 })

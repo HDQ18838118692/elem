@@ -28,61 +28,66 @@
   import Vue from "vue";
 
   var arr1 = [];
-  var arr=[];
+  var arr = [];
   export default {
     name: "search",
     data() {
       return {
         val: null,
-        arr2:[]
+        arr2: []
       }
-    },created(){
-      this.arr2=JSON.parse(localStorage.getItem("arr1"))
+    },
+    created() {
+      this.arr2 = JSON.parse(localStorage.getItem("arr1"))
     },
     methods: {
       tijiao() {
         if (this.val) {
           this.$refs.story.style.display = "none";
           this.$refs.jg.style.display = "block";
-          this.$refs.cha.style.display="block"
+          this.$refs.cha.style.display = "block"
           arr.push(this.val);
-         //数组去重
-          for(var i = 0; i < arr.length; i++) {
+          //数组去重
+          for (var i = 0; i < arr.length; i++) {
             var flag = true;
-            for(var j = 0; j < arr1.length; j++) {
-              if(arr[i]== arr1[j]) {
+            for (var j = 0; j < arr1.length; j++) {
+              if (arr[i] == arr1[j]) {
                 flag = false;
-              };
-            };
-            if(flag) {
+              }
+              ;
+            }
+            ;
+            if (flag) {
               arr1.push(arr[i]);
-            };
-          };
-          localStorage.setItem("arr1",JSON.stringify(arr1))
+            }
+            ;
+          }
+          ;
+          localStorage.setItem("arr1", JSON.stringify(arr1))
         }
       },
       cha() {
         this.$refs.story.style.display = "block";
         this.$refs.jg.style.display = "none";
         this.$refs.cha.style.display = "none";
-        this.val="";
+        this.val = "";
       },
       qk() {
         localStorage.removeItem("arr1");
-        this.arr2=[];
+        this.arr2 = [];
         this.$refs.story.style.display = "none";
 
       }
 
     },
-    watch:{
-      val:function (val) {
-        this.$refs.cha.style.display="block"
-        if(!val){
-          if(!localStorage.getItem("arr1")){
-            this.arr2=[]
-          }else{
-            this.arr2=JSON.parse(localStorage.getItem("arr1"))
+    watch: {
+      val: function (val) {
+        this.$refs.cha.style.display = "block"
+        if (!val) {
+          if (!localStorage.getItem("arr1")) {
+            this.arr2 = []
+          } else {
+            this.arr2 = JSON.parse(localStorage.getItem("arr1"))
             this.$refs.story.style.display = "block";
             this.$refs.jg.style.display = "none";
           }
@@ -169,7 +174,7 @@
 
   .search-history {
     width: 100%;
-
+display: none;
   }
 
   .search-history ul {

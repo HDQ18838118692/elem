@@ -16,7 +16,7 @@
           <li><img src="" alt=""><span>我的</span></li>
           </router-link>
       </ul>
-    </div>
+
 
 
 
