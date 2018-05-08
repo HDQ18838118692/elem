@@ -14,25 +14,25 @@
 		<div class="mask">
 			<v-touch v-on:swipeleft="onSwipeLeft" @swiperight="onSwipeRight" class="center">
 				<div class="lb">
-					<router-link to="/" v-for="(lb11,index) in lb2" :key="index">
+					<router-link :to="{name:'fenlei',query:{latitude:cun.latitude,longitude:cun.longitude,title:lb11.title}}" v-for="(lb11,index) in lb2" :key="index">
 						<img :src="`https://fuss10.elemecdn.com${lb11.image_url}`" />
 						<p>{{lb11.title}}</p>
 					</router-link>
 				</div>
 				<div class="lb">
-					<router-link to="/" v-for="lb11 in lb1" :key="lb11.title">
+					<router-link :to="{name:'fenlei',query:{latitude:cun.latitude,longitude:cun.longitude,title:lb11.title}}" v-for="lb11 in lb1" :key="lb11.title">
 						<img :src="`https://fuss10.elemecdn.com${lb11.image_url}`" />
 						<p>{{lb11.title}}</p>
 					</router-link>
 				</div>
 				<div class="lb">
-					<router-link to="/" v-for="lb11 in lb2" :key="lb11.title">
+					<router-link :to="{name:'fenlei',query:{latitude:cun.latitude,longitude:cun.longitude,title:lb11.title}}" v-for="lb11 in lb2" :key="lb11.title">
 						<img :src="`https://fuss10.elemecdn.com${lb11.image_url}`" />
 						<p>{{lb11.title}}</p>
 					</router-link>
 				</div>
 				<div class="lb">
-					<router-link to="/" v-for="lb11 in lb1" :key="lb11.title">
+					<router-link :to="{name:'fenlei',query:{latitude:cun.latitude,longitude:cun.longitude,title:lb11.title}}" v-for="lb11 in lb1" :key="lb11.title">
 						<img :src="`https://fuss10.elemecdn.com${lb11.image_url}`" />
 						<p>{{lb11.title}}</p>
 					</router-link>
@@ -52,7 +52,9 @@
 				</div>
 				<div>
 					<ul>
-						<li v-for="sp in shangpu" class="one11">
+
+						<li v-for="sp in shangpu" class="one10">
+              <router-link to="/" class="one11">
 							<div class="one12">
 								<img :src="`//elm.cangdu.org/img/${sp.image_path}`" alt="" style="width: 0.8rem;" />
 							</div>
@@ -70,22 +72,28 @@
 								<div class="one41">
 									￥20起送/配送费约￥5
 								</div>
+                </div>
+              </div>
+                <div class="one81">
+                  <div class="one91">
 								<div class="one51">
 								<span>保</span>
 								<span>准</span>
 								<span>票</span>
 								</div>
 								<div class="one61">
-								<div class="one62">蜂鸟专送</div>
-								<div class="one63">准时达</div>
+								<span class="one62">蜂鸟专送</span>
+								<span class="one63">准时达</span>
 								</div>
-								</div>
+                  </div>
 								<div class="one71">
 									<span>{{sp.distance}}公里</span>/
 									<span>{{sp.order_lead_time}}</span>
 								</div>
-							</div>
+                </div>
+              </router-link>
 						</li>
+
 					</ul>
 				</div>
 			</div>
@@ -101,7 +109,7 @@
 		data() {
 			return {
 				geohash: "",
-				cun: "",
+				cun: {},
 				lb1: [],
 				lb2: [],
 				left1: "",
@@ -122,6 +130,7 @@
 			let api1 = `http://cangdu.org:8001/v2/pois/${this.geohash}`
 			Vue.axios.get(api1).then((response) => {
 				this.cun = response.data
+        console.log(this.cun)
 			});
 			let api2 = "http://cangdu.org:8001/v2/index_entry"
 			Vue.axios.get(api2).then((response) => {
@@ -138,7 +147,7 @@
 			Vue.axios.get(api3).then((response) => {
 				console.log(response.data)
 				this.shangpu = response.data
-				this.value5 = this.shangpu[0].rating
+
 			});
 		},
 		methods: {
@@ -268,20 +277,20 @@
 		top: 0;
 		right: 0;
 	}
-	
+
 	.head1 {
 		width: 92%;
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
 	}
-	
+
 	.head a {
 		display: inline-block;
 		line-height: 0.51rem;
 		color: white;
 	}
-	
+
 	.head a:nth-child(2) {
 		width: 2.5rem;
 		overflow: hidden;
@@ -289,22 +298,22 @@
 		text-overflow: ellipsis;
 		font-size: 0.23rem;
 	}
-	
+
 	.head a i {
 		display: inline-block;
 	}
-	
+
 	.lb a {
 		display: inline-block;
 		width: 25%;
 		height: 0.25rem;
 	}
-	
+
 	.lb a img {
 		width: 0.5rem;
 		margin: 0.2rem 0;
 	}
-	
+
 	.mask {
 		width: 100%;
 		margin-top: 0.4rem;
@@ -312,7 +321,7 @@
 		position: relative;
 		height: 2.5rem;
 	}
-	
+
 	.center {
 		width: 400%;
 		overflow: hidden;
@@ -320,20 +329,20 @@
 		top: 0;
 		left: -4.6875rem;
 	}
-	
+
 	.lb {
 		text-align: center;
 		float: left;
 		width: 25%;
 	}
-	
+
 	.lb a p {
 		display: block;
 		font-size: 0.17rem;
 		color: black;
 		margin-bottom: 0.2rem;
 	}
-	
+
 	.dian div {
 		width: 0.15rem;
 		height: 0.15rem;
@@ -341,18 +350,18 @@
 		background: lightgray;
 		margin-left: 0.15rem;
 	}
-	
+
 	.dian {
 		display: flex;
 		position: absolute;
 		bottom: 0.1rem;
 		left: 2rem;
 	}
-	
+
 	.dian div:nth-child(1) {
 		background: red;
 	}
-	
+
 	.zhong {
 		background: #EEEEEE;
 		height: 0.12rem;
@@ -361,13 +370,85 @@
 	.bottom1{
 	width: 96%;
 	margin: 0 auto;
+
 }
 .fj{
-	margin-top: 0.2rem;
-	margin-bottom: 0.4rem;
-	
+	margin-top: 0.1rem;
+	margin-bottom: 0.3rem;
 }
 .fj span{
-	font-size: 0.15rem;
+	font-size: 0.16rem;
+  color: #aaa;
 }
+  .one12 img {
+    width: 0.8rem;
+    height: 0.8rem;
+  }
+  .one11{
+    display: flex;
+    justify-content: space-between;
+    color: black;
+  }
+  .one21{
+    width:2rem;
+    margin-left: 0.1rem;
+  }
+  .one22 span:nth-child(1){
+    font-size: 0.15rem;
+    font-weight: bolder;
+    background: #ffd930;
+  }
+  .one31{
+    display: flex;
+    justify-content: left;
+  }
+  .one31 div {
+   transform: scale(0.6);
+    margin-left: -0.3rem ;
+    margin-top: 0.15rem;
+  }
+  .one31 span{
+    font-size: 0.12rem;
+    margin-top: 0.2rem;
+    margin-left: -0.25rem;
+  }
+.one41{
+  font-size: 0.12rem;
+  margin: 0.2rem 0;
+}
+  .one51 span{
+    font-size: 0.12rem;
+    margin-left: 0.05rem;
+    border: 1px solid lightgray;
+    color: #999;
+  }
+  .one51{
+    float: right;
+  }
+  .one61 span{
+    font-size: 0.12rem;
+    border: 1px solid #3190e8;
+    color: #3190e8;
+    border-radius: 0.03rem;
+  }
+  .one61 span:nth-child(1){
+    background: #3190e8;
+    color: white;
+  }
+  .one61{
+    float: right;
+    margin: 0.2rem 0;
+  }
+
+.one91{
+  overflow: hidden;
+}
+  .one71{
+    font-size: 0.12rem;
+    margin-left: 0.2rem;
+  }
+  .one10{
+    border-bottom: 1px solid #eee;
+    margin-top: 0.2rem;
+  }
 </style>

@@ -11,7 +11,7 @@ import dingdan from "@/components/dingdan/dingdan";
 import my from "@/components/my/my";
 import usermes from "@/components/usermes/usermes";
 import setusername from "@/components/setusername/setusername";
-
+import fenlei from "@/components/fenlei/fenlei";
 Vue.use(Router)
 
 export default new Router({
@@ -64,6 +64,11 @@ export default new Router({
       path:"/setusername",
       name:'setusername',
       component:setusername
+    },
+    {
+      path:"/fenlei/",
+      name:"fenlei",
+      component:fenlei
     }
   ]
 })
