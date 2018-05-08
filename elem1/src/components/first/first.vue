@@ -48,7 +48,7 @@
         <div class="hot3">
           <ul style="overflow: hidden">
             <li v-for="city in hotCity" style="float: left;width: 24.7%">
-              <router-link :to="{path:'city',name:'city',params:{id:city.id}}">{{city.name}}</router-link>
+              <router-link :to="{path:`/city/${city.id}`,name:'city',params:{id:city.id}}">{{city.name}}</router-link>
             </li>
           </ul>
         </div>

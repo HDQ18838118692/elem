@@ -11,7 +11,13 @@ import dingdan from "@/components/dingdan/dingdan";
 import my from "@/components/my/my";
 import usermes from "@/components/usermes/usermes";
 import setusername from "@/components/setusername/setusername";
+
 import fenlei from "@/components/fenlei/fenlei";
+
+import address from "@/components/address/address";
+import add from "@/components/add/add";
+
+
 Vue.use(Router)
 
 export default new Router({
@@ -27,7 +33,7 @@ export default new Router({
       component: login
     },
     {
-      path: '/city/${id}',
+      path: '/city/:id',
       name: 'city',
       component: city
     },
@@ -56,11 +62,12 @@ export default new Router({
       }]
     },
     {
-      path: '/usermes/:phone',
+      path: '/usermes/',
       name: 'usermes',
       component: usermes
     },
     {
+
       path:"/setusername",
       name:'setusername',
       component:setusername
@@ -68,7 +75,23 @@ export default new Router({
     {
       path:"/fenlei/",
       name:"fenlei",
-      component:fenlei
+      component:fenlei},
+
+    { path: "/setusername",
+      name: 'setusername',
+      component: setusername
+    },
+    {
+      path: "/address",
+      name: 'address',
+      component: address,
+
+    },
+    {
+      path: "/add",
+      name: 'add',
+      component: add
+
     }
   ]
 })

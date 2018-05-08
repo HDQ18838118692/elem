@@ -145,7 +145,7 @@
 			});
 			let api3 = `http://cangdu.org:8001/shopping/restaurants?latitude=${this.cun.latitude}&longitude=${this.cun.longitude}`
 			Vue.axios.get(api3).then((response) => {
-				console.log(response.data)
+				// console.log(response.data)
 				this.shangpu = response.data
 
 			});
@@ -373,8 +373,14 @@
 
 }
 .fj{
+
 	margin-top: 0.1rem;
 	margin-bottom: 0.3rem;
+
+	margin-top: 0.2rem;
+	margin-bottom: 0.4rem;
+
+
 }
 .fj span{
 	font-size: 0.16rem;
@@ -443,6 +449,7 @@
 .one91{
   overflow: hidden;
 }
+
   .one71{
     font-size: 0.12rem;
     margin-left: 0.2rem;
@@ -451,4 +458,5 @@
     border-bottom: 1px solid #eee;
     margin-top: 0.2rem;
   }
+
 </style>

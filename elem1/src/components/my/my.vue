@@ -4,13 +4,13 @@
       <router-link to="/"><</router-link>
       我的
     </div>
-    <router-link :to="{path:`/usermes/${phone}`}"><div class="phone">
-      <img data-v-28fb7d8f  :src= "imgs" alt="" class="img1">
+    <router-link to="/usermes"><div class="phone">
+      <img :src= "imgs" alt="" class="img1">
       <p class="p1">{{phone}}</p>
       <p class="p2"><img src="./img/bindphone.png" alt="" class="img2">暂无绑定手机号</p>
       <span> ></span>
     </div>
-      <!--<img data-v-28fb7d8f src="/static/img/people.fe098d6.png" alt class="img1">-->
+    </router-link>
     <ul class="my">
       <li>
         <p><span class="span1">0.00</span>元</p>
@@ -24,7 +24,7 @@
         <p><span class="span3">0</span>分</p>
         <span>我的积分</span>
       </li>
-    </ul></router-link>
+    </ul>
     <ul class="yh">
       <li>
         <img src="./img/订单.png" alt="">
@@ -65,14 +65,22 @@
 </template>
 
 <script>
+  var arr1=[];
   export default {
     name: "my",
     data(){
       return{
         phone:15518983573,
-        imgs:"/static/img/people.fe098d6.png"
+        imgs:require("./img/people.png")
 
       }
+    },
+    created(){
+      // arr1.push({phone:15518983573});
+      if(JSON.parse(localStorage.getItem("arr"))){
+        this.phone=JSON.parse(localStorage.getItem("arr"))
+      }
+      localStorage.setItem("arr",JSON.stringify(this.phone));
     }
   }
 </script>
