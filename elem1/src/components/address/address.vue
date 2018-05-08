@@ -7,11 +7,12 @@
     </div>
     <div class="main">
       <ul class="ul1">
-        <li>
-          <p> &nbsp 15号楼</p>
-          <p> &nbsp 15518983573</p>
+        <li v-if="phone">
+          <p> &nbsp {{dress}}</p>
+          <p> &nbsp {{phone}}</p>
         </li>
       </ul>
+      <!--//query要用path来引入，params要用name来引入-->
       <router-link :to="{path:'/add',name:'add'}">
         <p> &nbsp新增地址 <span> > </span></p>
       </router-link>
@@ -23,7 +24,21 @@
 
 <script>
   export default {
-    name: "address"
+    name: "address",
+    data(){
+      return{
+        dress:"",
+        phone:""
+      }
+    },
+    created(){
+      if(this.$route.query.dress){
+        this.dress=this.$route.query.dress
+        this.phone=this.$route.query.phone
+      }
+
+    }
+
   }
 </script>
 

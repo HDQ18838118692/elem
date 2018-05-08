@@ -1,7 +1,7 @@
 <template>
 <div class="dingdan">
   <div class="header">
-    <router-link to="/"><</router-link>
+    <router-link to="/"> <span @click="go"><</span></router-link>
     订单列表
   </div>
 </div>
@@ -9,7 +9,12 @@
 
 <script>
     export default {
-        name: "dingdan"
+        name: "dingdan",
+      methods:{
+          go(){
+            history.go(-1);
+          }
+      }
     }
 </script>
 

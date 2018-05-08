@@ -17,7 +17,8 @@ import fenlei from "@/components/fenlei/fenlei";
 import address from "@/components/address/address";
 import add from "@/components/add/add";
 
-
+import addDetail from "@/components/addDetail/addDetail";
+import jifen from "@/components/jifen/jifen";
 Vue.use(Router)
 
 export default new Router({
@@ -92,6 +93,15 @@ export default new Router({
       name: 'add',
       component: add
 
+    },
+    {
+      path:"/addDetail",
+      name:'addDetail',
+      component:addDetail
+    },{
+      path:"/jifen",
+      name:'jifen',
+      component:jifen
     }
   ]
 })

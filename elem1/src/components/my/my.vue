@@ -26,18 +26,22 @@
       </li>
     </ul>
     <ul class="yh">
-      <li>
+      <router-link to="/dingdan">
+        <li>
         <img src="./img/订单.png" alt="">
         <p><span>我的订单</span><span>
           >
         </span></p>
       </li>
+      </router-link>
+      <router-link to="/jifen">
       <li>
         <img src="./img/积分.png" alt="">
         <p><span>积分商城</span><span>
           ></span>
         </p>
       </li>
+      </router-link>
       <li>
         <img src="./img/huiyuan.png" alt="">
         <p><span>饿了么会员卡</span>

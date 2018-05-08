@@ -6,22 +6,31 @@
     </div>
     <div class="main">
       <input type="text" placeholder="请填写你的姓名">
-      <input type="text" placeholder="小区/写字楼/学校等">
-      <input type="text" placeholder="请填写详细送餐地址">
-      <input type="text" placeholder="请填写能够联系到您的手机号">
+      <router-link to="/addDetail">
+      <input type="text" placeholder="小区/写字楼/学校等" v-model="name"></router-link>
+      <input type="text" placeholder="请填写详细送餐地址" v-model="vadress">
+      <input type="text" placeholder="请填写能够联系到您的手机号" v-model="vphone">
       <input type="text" placeholder="备用联系电话（选填）">
 
     </div>
+    <router-link :to="{path:'/address',name:'address',query:{phone:this.vphone,dress:this.vadress}}">
     <div class="btn">
-      <button>新增地址</button>
+       <button>新增地址</button>
     </div>
-
+    </router-link>
   </div>
 </template>
 
 <script>
   export default {
-    name: "add"
+    name: "add",
+    data(){
+      return{
+        name:this.$route.query.name,
+        vadress:null,
+        vphone:null
+      }
+    }
   }
 </script>
 
