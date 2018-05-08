@@ -136,7 +136,7 @@
 			});
 			let api3 = `http://cangdu.org:8001/shopping/restaurants?latitude=${this.cun.latitude}&longitude=${this.cun.longitude}`
 			Vue.axios.get(api3).then((response) => {
-				console.log(response.data)
+				// console.log(response.data)
 				this.shangpu = response.data
 				this.value5 = this.shangpu[0].rating
 			});
@@ -268,20 +268,20 @@
 		top: 0;
 		right: 0;
 	}
-	
+
 	.head1 {
 		width: 92%;
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
 	}
-	
+
 	.head a {
 		display: inline-block;
 		line-height: 0.51rem;
 		color: white;
 	}
-	
+
 	.head a:nth-child(2) {
 		width: 2.5rem;
 		overflow: hidden;
@@ -289,22 +289,22 @@
 		text-overflow: ellipsis;
 		font-size: 0.23rem;
 	}
-	
+
 	.head a i {
 		display: inline-block;
 	}
-	
+
 	.lb a {
 		display: inline-block;
 		width: 25%;
 		height: 0.25rem;
 	}
-	
+
 	.lb a img {
 		width: 0.5rem;
 		margin: 0.2rem 0;
 	}
-	
+
 	.mask {
 		width: 100%;
 		margin-top: 0.4rem;
@@ -312,7 +312,7 @@
 		position: relative;
 		height: 2.5rem;
 	}
-	
+
 	.center {
 		width: 400%;
 		overflow: hidden;
@@ -320,20 +320,20 @@
 		top: 0;
 		left: -4.6875rem;
 	}
-	
+
 	.lb {
 		text-align: center;
 		float: left;
 		width: 25%;
 	}
-	
+
 	.lb a p {
 		display: block;
 		font-size: 0.17rem;
 		color: black;
 		margin-bottom: 0.2rem;
 	}
-	
+
 	.dian div {
 		width: 0.15rem;
 		height: 0.15rem;
@@ -341,18 +341,18 @@
 		background: lightgray;
 		margin-left: 0.15rem;
 	}
-	
+
 	.dian {
 		display: flex;
 		position: absolute;
 		bottom: 0.1rem;
 		left: 2rem;
 	}
-	
+
 	.dian div:nth-child(1) {
 		background: red;
 	}
-	
+
 	.zhong {
 		background: #EEEEEE;
 		height: 0.12rem;
@@ -365,7 +365,7 @@
 .fj{
 	margin-top: 0.2rem;
 	margin-bottom: 0.4rem;
-	
+
 }
 .fj span{
 	font-size: 0.15rem;

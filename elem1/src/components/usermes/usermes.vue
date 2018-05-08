@@ -19,15 +19,18 @@
           <span class="span2">{{phone}}</span>
         </div>
       </router-link>
+      <router-link to="/address">
       <div class="div2">
         <span class="span1">收货地址</span>
         <span class="span3">  ></span>
       </div>
+      </router-link>
       <p class="p3">账号绑定</p>
-      <div class="div2">
-          <span class="span1">
+      <div class="div2" @click="tiao">
+          <span class="span1" ref="phone">
             <img src="../my/img/bindphone.png" alt="">
             手机</span>
+
         <span class="span3"> ></span>
       </div>
       <p class="p3">安全设置</p>
@@ -37,7 +40,11 @@
         <span class="span2">修改</span>
       </div>
     </div>
-
+    <div class="warn" ref="tiao1">
+      <img src="./img/warn2.png" alt="">
+      <p>请在手机APP中设置</p>
+      <button @click="qre">确认</button>
+    </div>
   </div>
 </template>
 
@@ -48,7 +55,8 @@
     name: "usermes",
     data() {
       return {
-        phone: this.$route.params.phone,
+        // phone: this.$route.params.phone,
+        phone:JSON.parse(localStorage.getItem("arr")),
         image_path: require("../my/img/people.png")
       }
     },
@@ -77,6 +85,13 @@
             alert("图片上传失败");
           })
       },
+      tiao() {
+        this.$refs.tiao1.style.display = "block";
+      },
+      qre(ev) {
+        this.$refs.tiao1.style.display = "none";
+
+      }
 
     }
 
@@ -88,6 +103,7 @@
     width: 100%;
     height: 8.3375rem;
     background-color: #f5f5f5;
+    position: relative;
   }
 
   .header {
@@ -179,5 +195,38 @@
     opacity: 0;
     height: 0.9rem;
 
+  }
+
+  .warn {
+    position: absolute;
+    width: 3.5125rem;
+    height: 2.3rem;
+    top: 2.3rem;
+    left: 0.5rem;
+    text-align: center;
+    background-color: white;
+    font-size: 0.25rem;
+    border: 0px solid;
+    display: none;
+  }
+
+  .warn img {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+  }
+
+  .warn p {
+    margin-bottom: 0.2rem;
+  }
+
+  .warn button {
+    background-color: #4cd964;
+    height: 0.5rem;
+    width: 100%;
+    line-height: 0.5rem;
+    color: white;
   }
 </style>
