@@ -32,7 +32,7 @@
 
             <p></p>
             <p v-for="(ara,index) in arr.specfoods">
-              <span v-if="index==0">{{ara.price}}</span>
+              <span v-if="index==0">￥{{ara.price}}</span>
             </p>
           </div>
         </li>
