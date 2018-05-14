@@ -19,8 +19,10 @@ import add from "@/components/add/add";
 
 import addDetail from "@/components/addDetail/addDetail";
 import jifen from "@/components/jifen/jifen";
-Vue.use(Router)
+import gouwu from "@/components/gouwu/gouwu";
+import sp from "@/components/gouwu/sp";
 
+Vue.use(Router)
 export default new Router({
   routes: [
     {
@@ -102,6 +104,19 @@ export default new Router({
       path:"/jifen",
       name:'jifen',
       component:jifen
+    },{
+    	path:"/gouwu",
+    	name:'gouwu',
+    	component:gouwu,
+      children:[
+        {
+          path:'/sp',
+          name:'sp',
+          component:sp,
+
+        }
+      ]
     }
+
   ]
 })

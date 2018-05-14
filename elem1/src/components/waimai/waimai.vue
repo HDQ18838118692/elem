@@ -54,7 +54,7 @@
 					<ul>
 
 						<li v-for="sp in shangpu" class="one10">
-              <router-link to="/" class="one11">
+              <router-link :to="{name:'sp',params:{id:sp.id}}" class="one11">
 							<div class="one12">
 								<img :src="`//elm.cangdu.org/img/${sp.image_path}`" alt="" style="width: 0.8rem;" />
 							</div>
@@ -116,7 +116,8 @@
 				startX: 0,
 				endX: 0,
 				shangpu: [],
-				value5: null
+				value5: null,
+
 			}
 		},
 		created() {
@@ -126,15 +127,15 @@
 			} else {
 				this.geohash = JSON.parse(localStorage.getItem("geo"))
 			}
-			console.log(this.geohash)
+//			console.log(this.geohash)
 			let api1 = `http://cangdu.org:8001/v2/pois/${this.geohash}`
 			Vue.axios.get(api1).then((response) => {
 				this.cun = response.data
-        console.log(this.cun)
+//      console.log(this.cun)
 			});
 			let api2 = "http://cangdu.org:8001/v2/index_entry"
 			Vue.axios.get(api2).then((response) => {
-				console.log(response.data)
+//				console.log(response.data)
 				var lb = response.data
 				for(let i = 0; i < 8; i++) {
 					this.lb1.push(lb[i])
@@ -145,14 +146,14 @@
 			});
 			let api3 = `http://cangdu.org:8001/shopping/restaurants?latitude=${this.cun.latitude}&longitude=${this.cun.longitude}`
 			Vue.axios.get(api3).then((response) => {
-				// console.log(response.data)
-				this.shangpu = response.data
+				 console.log(response.data)
+				this.shangpu = response.data;
 
 			});
 		},
 		methods: {
 			left(ev) {
-				console.log(ev.target)
+//				console.log(ev.target)
 				ev.target.style.background = "red"
 				ev.target.parentNode.lastChild.style.backgroundColor = "lightgray"
 				sd($('.center'))
