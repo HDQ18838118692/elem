@@ -59,6 +59,7 @@
 </template>
 
 <script>
+  const API_PROXY = 'https://bird.ioliu.cn/v1/?url='
   import Vue from "vue"
     export default {
         name: "fenlei",
@@ -74,12 +75,16 @@
       created(){
 
         let api3 = `http://cangdu.org:8001/shopping/restaurants?latitude=${this.latitude}&longitude=${this.longitude}`
-
+        let api4=API_PROXY+'http://v.juhe.cn/toutiao/index?type=top&key=c1c99a91ba4e27505f67f4969cec9a02'
         Vue.axios.get(api3).then((response) => {
           console.log(response.data)
 this.shangpu= response.data
         });
-        
+        Vue.axios.get(api4).then((response) => {
+          console.log(response.data)
+
+        });
+
       }
     }
 </script>
