@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="fenlei">
   <div>
     <span><</span>
     <span>甜品饮品</span>
@@ -80,16 +80,22 @@
           console.log(response.data)
 this.shangpu= response.data
         });
+
         Vue.axios.get(api4).then((response) => {
           console.log(response.data)
 
         });
+
+
 
       }
     }
 </script>
 
 <style scoped>
+  .fenlei{
+    height: 8.3375rem;
+  }
   .one12 img {
     width: 0.8rem;
     height: 0.8rem;

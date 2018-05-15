@@ -5,30 +5,53 @@
       新增地址
     </div>
     <div class="main">
-      <input type="text" placeholder="请填写你的姓名">
+      <input type="text" placeholder="请填写你的姓名" v-model="namee">
       <router-link to="/addDetail">
-      <input type="text" placeholder="小区/写字楼/学校等" v-model="name"></router-link>
+        <input type="text" placeholder="小区/写字楼/学校等" v-model="name"></router-link>
       <input type="text" placeholder="请填写详细送餐地址" v-model="vadress">
-      <input type="text" placeholder="请填写能够联系到您的手机号" v-model="vphone">
+      <input type="number" placeholder="请填写能够联系到您的手机号" v-model="vphone" maxlength="11"
+             onkeyup="value=value.replace(/[^\d]/g,'')">
       <input type="text" placeholder="备用联系电话（选填）">
 
     </div>
-    <router-link :to="{path:'/address',name:'address',query:{phone:this.vphone,dress:this.vadress}}">
-    <div class="btn">
-       <button>新增地址</button>
-    </div>
+    <router-link :to="{path:'/address',name:'address1',query:{phone:this.vphone,dress:this.vadress}}">
+      <div class="btn">
+        <button @click="zeng">新增地址</button>
+      </div>
     </router-link>
   </div>
 </template>
 
 <script>
+  var arr = []
   export default {
     name: "add",
-    data(){
-      return{
-        name:this.$route.query.name,
-        vadress:null,
-        vphone:null
+    data() {
+      return {
+        name: this.$route.query.name,
+        vadress: null,
+        vphone: null,
+        namee:null
+
+      }
+
+    },
+    created() {
+      this.namee=this.$store.state.count;
+    },
+    computed: {
+    },
+    methods: {
+      zeng() {
+        arr.push({adress: this.vadress, phone: this.vphone});
+        console.log(this.arr)
+        localStorage.setItem("arr3", JSON.stringify(arr));
+
+      }
+    },
+    watch:{
+      namee(val){
+        this.$store.state.count=val;
       }
     }
   }

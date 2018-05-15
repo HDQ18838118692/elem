@@ -4,12 +4,13 @@
       <router-link to="/"><</router-link>
       我的
     </div>
-    <router-link to="/usermes"><div class="phone">
-      <img :src= "imgs" alt="" class="img1">
-      <p class="p1">{{phone}}</p>
-      <p class="p2"><img src="./img/bindphone.png" alt="" class="img2">暂无绑定手机号</p>
-      <span> ></span>
-    </div>
+    <router-link to="/usermes">
+      <div class="phone">
+        <img :src="imgs" alt="" class="img1">
+        <p class="p1">{{phone}}</p>
+        <p class="p2"><img src="./img/bindphone.png" alt="" class="img2">暂无绑定手机号</p>
+        <span> ></span>
+      </div>
     </router-link>
     <ul class="my">
       <li>
@@ -28,20 +29,21 @@
     <ul class="yh">
       <router-link to="/dingdan">
         <li>
-        <img src="./img/订单.png" alt="">
-        <p><span>我的订单</span><span>
+          <img src="./img/订单.png" alt="">
+          <p><span>我的订单</span><span>
           >
         </span></p>
-      </li>
+        </li>
       </router-link>
       <router-link to="/jifen">
-      <li>
-        <img src="./img/积分.png" alt="">
-        <p><span>积分商城</span><span>
+        <li>
+          <img src="./img/积分.png" alt="">
+          <p><span>积分商城</span><span>
           ></span>
-        </p>
-      </li>
+          </p>
+        </li>
       </router-link>
+      <router-link to="/vipcard">
       <li>
         <img src="./img/huiyuan.png" alt="">
         <p><span>饿了么会员卡</span>
@@ -49,42 +51,63 @@
           >
           </span></p>
       </li>
+      </router-link>
     </ul>
     <ul class="yh">
-      <li><img src="./img/服务.png" alt="">
-        <p><span>服务中心</span>
-          <span>
+      <router-link to="/service">
+        <li><img src="./img/服务.png" alt="">
+          <p><span>服务中心</span>
+            <span>
           >
           </span>
-        </p></li>
+          </p></li>
+      </router-link>
       <li>
         <img src="./img/elmlogo.jpeg" alt="">
-        <p><span>下载饿了么APP</span>
+        <p @click="tiao"><span>下载饿了么APP</span>
           <span>
           >
           </span></p></li>
     </ul>
 
+    <div class="warn" ref="tiao1">
+      <img src="./img/warn2.png" alt="">
+      <p>IOS用户请前往AppStore下载</p>
+      <button @click="qre">确认</button>
+    </div>
   </div>
 </template>
 
 <script>
-  var arr1=[];
+  var arr1 = [];
   export default {
     name: "my",
-    data(){
-      return{
-        phone:15518983573,
-        imgs:require("./img/people.png")
+    data() {
+      return {
+        phone: this.$route.params.username,
+        imgs: require("./img/people.png")
 
       }
     },
-    created(){
-      // arr1.push({phone:15518983573});
-      if(JSON.parse(localStorage.getItem("arr"))){
-        this.phone=JSON.parse(localStorage.getItem("arr"))
+    created() {
+      // if (JSON.parse(localStorage.getItem("arr"))) {
+      //   this.phone = JSON.parse(localStorage.getItem("arr"))
+      // }
+      // localStorage.setItem("arr", JSON.stringify(this.phone));
+      if (this.$route.params.username) {
+        this.phone = this.$route.params.username
+      } else {
+        this.phone = JSON.parse(localStorage.getItem("arr"));
       }
-      localStorage.setItem("arr",JSON.stringify(this.phone));
+    },
+    methods:{
+      tiao() {
+        this.$refs.tiao1.style.display = "block";
+      },
+      qre(ev) {
+        this.$refs.tiao1.style.display = "none";
+
+      }
     }
   }
 </script>
@@ -94,8 +117,41 @@
     width: 100%;
     height: 7.7675rem;
     background-color: #f5f5f5;
+    position: relative;
+  }
+  .warn {
+    position: absolute;
+    width: 3.5125rem;
+    height: 2.3rem;
+    top: 2.3rem;
+    left: 0.5rem;
+    text-align: center;
+    background-color: white;
+    font-size: 0.22rem;
+  color: #666;
+    border: 0px solid;
+    display:none;
   }
 
+  .warn img {
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    margin-bottom: 0.2rem;
+    margin-top: 0.2rem;
+  }
+
+  .warn p {
+    margin-bottom: 0.2rem;
+  }
+
+  .warn button {
+    background-color: #4cd964;
+    height: 0.5rem;
+    width: 100%;
+    line-height: 0.5rem;
+    color: white;
+  }
   .header {
     width: 100%;
     height: 0.57rem;
@@ -191,7 +247,7 @@
     margin-top: 0.13rem;
     width: 100%;
     background-color: white;
-    color: rgb(51,51,51);
+    color: rgb(51, 51, 51);
 
   }
 

@@ -3,7 +3,7 @@
     <div class="left">
       <ul>
         <li v-for="data in datas" @click="bai" class="li1">
-          <img :src="`//elm.cangdu.org/img/${data.icon_url}`" alt="">
+          <img :src="`//elm.cangdu.org/img/${data.icon_url}.jpeg`" alt="">
           {{data.name}}
         </li>
       </ul>

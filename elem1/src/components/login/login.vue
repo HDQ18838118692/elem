@@ -29,38 +29,48 @@
 <script>
   import Vue from "vue";
 
-  let apid = "https://elm.cangdu.org/v2/login";
-  let apiy = "https://elm.cangdu.org/v1/captchas";
 
   export default {
     name: "login",
     data() {
       return {
         imgs: null,
-
-          v1:null,
-          v2:null,
-          v3:null
+        v1: null,
+        v2: null,
+        v3: null
 
       }
     },
     created() {
+      let url = "https://elm.cangdu.org/v1/captchas";
 
-      Vue.axios.post(apiy).then((res) => {
+      var data = {}
+      Vue.postLogin(url, data, res => {
 
-        this.imgs = res.data.code;
+        this.imgs = res.code;
       })
     },
 
     methods: {
       submitA() {
-
-        Vue.axios.post(apid, {
+        let data = {
           username: this.v1,
           password: this.v2,
-          captcha_code:this.v3
-        }).then((res) => {
-          console.log(res.data);
+          captcha_code: this.v3
+        }
+        let url = "https://elm.cangdu.org/v2/login";
+        Vue.postLogin(url, data, (res) => {
+          console.log(res);
+          if (res.status != 0) {
+            this.$router.push({
+              name: 'my',
+              params: res
+            })
+          }else{
+            alert(res.message);
+          }
+
+
         })
       },
       chcolor() {

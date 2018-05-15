@@ -20,10 +20,10 @@
         </div>
       </router-link>
       <router-link to="/address">
-      <div class="div2">
-        <span class="span1">收货地址</span>
-        <span class="span3">  ></span>
-      </div>
+        <div class="div2">
+          <span class="span1">收货地址</span>
+          <span class="span3">  ></span>
+        </div>
       </router-link>
       <p class="p3">账号绑定</p>
       <div class="div2" @click="tiao">
@@ -40,9 +40,19 @@
         <span class="span2">修改</span>
       </div>
     </div>
+    <div class="dbtn" >
+      <button @click="tui" class="btn1">
+        <span>退出登录</span>
+      </button>
+    </div>
     <div class="warn" ref="tiao1">
       <img src="./img/warn2.png" alt="">
       <p>请在手机APP中设置</p>
+      <button @click="qre">确认</button>
+    </div>
+    <div class="warn" ref="tiao1">
+      <img src="./img/warn2.png" alt="">
+      <p>是否退出登录</p>
       <button @click="qre">确认</button>
     </div>
   </div>
@@ -56,7 +66,7 @@
     data() {
       return {
         // phone: this.$route.params.phone,
-        phone:JSON.parse(localStorage.getItem("arr")),
+        phone: JSON.parse(localStorage.getItem("arr")),
         image_path: require("../my/img/people.png")
       }
     },
@@ -91,6 +101,12 @@
       qre(ev) {
         this.$refs.tiao1.style.display = "none";
 
+      },
+      tui(){
+        let url = "http://cangdu.org:8001/v2/signout";
+        Vue.axios.get(url).then((res)=>{
+          console.log(res)
+        })
       }
 
     }
@@ -104,6 +120,29 @@
     height: 8.3375rem;
     background-color: #f5f5f5;
     position: relative;
+
+  }
+
+  .dbtn {
+    width: 100%;
+    text-align: center;
+    margin-top: 0.4rem;
+  }
+
+  .btn1 {
+    width: 96%;
+    height: 0.45rem;
+    background-color: #d8584a;
+    border-radius: 5px;
+    color: white;
+    font-size: 0.18rem;
+
+
+  }
+
+  .btn1 span {
+   opacity: 0.9;
+    font-weight: lighter;
   }
 
   .header {
