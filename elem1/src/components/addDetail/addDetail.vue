@@ -39,7 +39,7 @@
         let api = "http://cangdu.org:8001/v1/pois?city_id=32&keyword=" + this.val + "&type=search";
         Vue.axios.get(api).then((res) => {
           this.arr1 = res.data;
-          console.log(this.arr1)
+          // console.log(this.arr1)
         })
       }
     }

@@ -13,15 +13,16 @@ import usermes from "@/components/usermes/usermes";
 import setusername from "@/components/setusername/setusername";
 
 import fenlei from "@/components/fenlei/fenlei";
-
-import address from "@/components/address/address";
+import address1 from "@/components/address1/address1";
 import add from "@/components/add/add";
 
 import addDetail from "@/components/addDetail/addDetail";
 import jifen from "@/components/jifen/jifen";
 import gouwu from "@/components/gouwu/gouwu";
 import sp from "@/components/gouwu/sp";
-
+import service from "@/components/my/service";
+import questiondetail from"@/components/my/questiondetail"
+import vipcard from "@/components/my/vipcard";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -86,8 +87,8 @@ export default new Router({
     },
     {
       path: "/address",
-      name: 'address',
-      component: address,
+      name: 'address1',
+      component: address1,
 
     },
     {
@@ -116,6 +117,21 @@ export default new Router({
 
         }
       ]
+    },
+    {
+      path:'/service',
+      name:'service',
+      component:service
+    },
+    {
+      path:"/questiondetail",
+      name:'questiondetail',
+      component:questiondetail
+    },
+    {
+      path:'/vipcard',
+      name:'vipcard',
+      component:vipcard
     }
 
   ]

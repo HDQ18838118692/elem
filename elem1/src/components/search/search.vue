@@ -174,7 +174,7 @@
 
   .search-history {
     width: 100%;
-display: none;
+display: block;
   }
 
   .search-history ul {

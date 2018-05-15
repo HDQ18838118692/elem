@@ -27,6 +27,7 @@
           if (this.val.length < 5 || this.val.length > 24) {
               this.$refs.p1.innerHTML = "用户名长度在5到24位之间";
               this.$refs.p1.style.color = "red";
+
               this.$refs.i1.style.border = " 1px solid red";
             } else {
               localStorage.setItem("arr", JSON.stringify(this.val));

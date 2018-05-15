@@ -277,6 +277,7 @@
 		left: 0;
 		top: 0;
 		right: 0;
+    z-index: 3;
 	}
 
 	.head1 {
