@@ -13,18 +13,24 @@
       </div>
     </router-link>
     <ul class="my">
+      <router-link to="/balance">
       <li>
         <p><span class="span1">0.00</span>元</p>
         <span>我的余额</span>
       </li>
+      </router-link>
+      <router-link to="/benefit">
       <li>
         <p><span class="span2">3</span>个</p>
         <span>我的优惠</span>
       </li>
+      </router-link>
+      <router-link to="/points">
       <li>
         <p><span class="span3">0</span>分</p>
         <span>我的积分</span>
       </li>
+      </router-link>
     </ul>
     <ul class="yh">
       <router-link to="/dingdan">
