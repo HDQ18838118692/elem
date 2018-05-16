@@ -43,14 +43,17 @@
           </p>
         </li>
       </router-link>
-      <router-link to="/vipcard">
-      <li>
-        <img src="./img/huiyuan.png" alt="">
-        <p><span>饿了么会员卡</span>
-          <span>
+      <router-link :to="{name:'vipcard',params:{
+      phone:this.phone
+      }
+      }">
+        <li>
+          <img src="./img/huiyuan.png" alt="">
+          <p><span>饿了么会员卡</span>
+            <span>
           >
           </span></p>
-      </li>
+        </li>
       </router-link>
     </ul>
     <ul class="yh">
@@ -100,7 +103,7 @@
         this.phone = JSON.parse(localStorage.getItem("arr"));
       }
     },
-    methods:{
+    methods: {
       tiao() {
         this.$refs.tiao1.style.display = "block";
       },
@@ -119,6 +122,7 @@
     background-color: #f5f5f5;
     position: relative;
   }
+
   .warn {
     position: absolute;
     width: 3.5125rem;
@@ -128,9 +132,9 @@
     text-align: center;
     background-color: white;
     font-size: 0.22rem;
-  color: #666;
+    color: #666;
     border: 0px solid;
-    display:none;
+    display: none;
   }
 
   .warn img {
@@ -152,6 +156,7 @@
     line-height: 0.5rem;
     color: white;
   }
+
   .header {
     width: 100%;
     height: 0.57rem;

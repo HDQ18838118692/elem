@@ -1,4 +1,5 @@
 let state={
-  count:""
+  count:"",
+  val:""
 }
 export default state;

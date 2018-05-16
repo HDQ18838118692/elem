@@ -26,7 +26,7 @@
         </div>
       </router-link>
       <p class="p3">账号绑定</p>
-      <div class="div2" @click="tiao">
+      <div class="div2" @click="tiao2">
           <span class="span1" ref="phone">
             <img src="../my/img/bindphone.png" alt="">
             手机</span>
@@ -40,12 +40,12 @@
         <span class="span2">修改</span>
       </div>
     </div>
-    <div class="dbtn" >
-      <button @click="tui" class="btn1">
+    <div class="dbtn">
+      <button @click="tiao" class="btn1">
         <span>退出登录</span>
       </button>
     </div>
-    <div class="warn" ref="tiao1">
+    <div class="warn" ref="tiao2">
       <img src="./img/warn2.png" alt="">
       <p>请在手机APP中设置</p>
       <button @click="qre">确认</button>
@@ -97,14 +97,18 @@
       },
       tiao() {
         this.$refs.tiao1.style.display = "block";
-      },
-      qre(ev) {
-        this.$refs.tiao1.style.display = "none";
 
       },
-      tui(){
+      qre(ev) {
+        ev.target.parentNode.style.display = "none";
+
+      },
+      tiao2() {
+        this.$refs.tiao2.style.display = "block";
+      },
+      tui() {
         let url = "http://cangdu.org:8001/v2/signout";
-        Vue.axios.get(url).then((res)=>{
+        Vue.axios.get(url).then((res) => {
           console.log(res)
         })
       }
@@ -137,11 +141,10 @@
     color: white;
     font-size: 0.18rem;
 
-
   }
 
   .btn1 span {
-   opacity: 0.9;
+    opacity: 0.9;
     font-weight: lighter;
   }
 

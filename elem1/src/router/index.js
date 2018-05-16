@@ -21,8 +21,10 @@ import jifen from "@/components/jifen/jifen";
 import gouwu from "@/components/gouwu/gouwu";
 import sp from "@/components/gouwu/sp";
 import service from "@/components/my/service";
-import questiondetail from"@/components/my/questiondetail"
+import questiondetail from "@/components/my/questiondetail"
 import vipcard from "@/components/my/vipcard";
+import pay from "@/components/my/pay";
+
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -72,16 +74,18 @@ export default new Router({
     },
     {
 
-      path:"/setusername",
-      name:'setusername',
-      component:setusername
+      path: "/setusername",
+      name: 'setusername',
+      component: setusername
     },
     {
-      path:"/fenlei/",
-      name:"fenlei",
-      component:fenlei},
+      path: "/fenlei/",
+      name: "fenlei",
+      component: fenlei
+    },
 
-    { path: "/setusername",
+    {
+      path: "/setusername",
       name: 'setusername',
       component: setusername
     },
@@ -98,40 +102,44 @@ export default new Router({
 
     },
     {
-      path:"/addDetail",
-      name:'addDetail',
-      component:addDetail
-    },{
-      path:"/jifen",
-      name:'jifen',
-      component:jifen
-    },{
-    	path:"/gouwu",
-    	name:'gouwu',
-    	component:gouwu,
-      children:[
+      path: "/addDetail",
+      name: 'addDetail',
+      component: addDetail
+    }, {
+      path: "/jifen",
+      name: 'jifen',
+      component: jifen
+    }, {
+      path: "/gouwu",
+      name: 'gouwu',
+      component: gouwu,
+      children: [
         {
-          path:'/sp',
-          name:'sp',
-          component:sp,
+          path: '/sp',
+          name: 'sp',
+          component: sp,
 
         }
       ]
     },
     {
-      path:'/service',
-      name:'service',
-      component:service
+      path: '/service',
+      name: 'service',
+      component: service
     },
     {
-      path:"/questiondetail",
-      name:'questiondetail',
-      component:questiondetail
+      path: "/questiondetail",
+      name: 'questiondetail',
+      component: questiondetail
     },
     {
-      path:'/vipcard',
-      name:'vipcard',
-      component:vipcard
+      path: '/vipcard',
+      name: 'vipcard',
+      component: vipcard
+    }, {
+      path: '/pay',
+      name: 'pay',
+      component: pay
     }
 
   ]
