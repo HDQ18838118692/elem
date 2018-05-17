@@ -4,7 +4,7 @@
       <router-link to="/"><</router-link>
       我的
     </div>
-    <router-link to="/usermes">
+    <router-link :to="url">
       <div class="phone">
         <img :src="imgs" alt="" class="img5">
         <p class="p1">{{phone}}</p>
@@ -93,20 +93,32 @@
     name: "my",
     data() {
       return {
-        phone: this.$route.params.username,
-        imgs: require("./img/people.png")
+        phone: '登录/注册',
+        imgs: require("./img/people.png"),
+        url:"/usermes"
 
       }
     },
     created() {
-      // if (JSON.parse(localStorage.getItem("arr"))) {
-      //   this.phone = JSON.parse(localStorage.getItem("arr"))
-      // }
-      // localStorage.setItem("arr", JSON.stringify(this.phone));
+//       if (JSON.parse(localStorage.getItem("arr"))) {
+//         this.phone = JSON.parse(localStorage.getItem("arr"))
+//       }
+console.log(this.$route.params.username)
       if (this.$route.params.username) {
         this.phone = this.$route.params.username
+         localStorage.setItem("arr", JSON.stringify(this.phone));
+//       console.log(this.phone)
+         if(this.phone==1||this.phone=='登录/注册'){
+         	this.url="/login"
+         	this.phone='登录/注册'
+         }
       } else {
         this.phone = JSON.parse(localStorage.getItem("arr"));
+//       console.log(this.phone)
+         if(this.phone==1||this.phone=='登录/注册'){
+         	this.url="/login"
+         	this.phone='登录/注册'
+         }
       }
     },
     methods: {

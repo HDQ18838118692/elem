@@ -74,11 +74,12 @@
 
 <style scoped>
 	.header {
-		width: 100%;
+		/*width: 375px;*/
 		background-size: cover;
 		color: white;
 		overflow: hidden;
 		position: relative;
+		height: 1.325rem;
 	}
   .div1{
     width: 100%;
@@ -139,7 +140,7 @@
     margin-right: 0.2rem;
   }
   .main{
-    width: 100%;
+   /* width: 375px;*/
     height: 0.7rem;
     overflow: hidden;
     display: flex;

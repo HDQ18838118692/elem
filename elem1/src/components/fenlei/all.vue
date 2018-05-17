@@ -2,21 +2,21 @@
     <div id="app">
       <div class="headtop">
         <span class="jt" @click="fh"><</span>
-        <span class="tit">{{this.$route.query.title}}</span>
+        <span class="tit">{{this.$route.query.tit}}</span>
       </div>
       <div class="sort">
 
         <div class="titt" @click="dj">
-          <span :class="{xz:orxz}" v-if="!orxz" @click="orshow($event,tit)" style="line-height: 0.5rem">{{this.$route.query.title}}</span>
-          <span v-if="orxz" :class="{xz:orxz}" @click="orshow($event,tit)" style="line-height: 0.5rem">分类</span>
+          <span :class="{xz:orxz}" v-if="!orxz" @click="orshow($event,tit)" style="line-height: 1.478rem">{{this.$route.query.tit}}</span>
+          <span v-if="orxz" :class="{xz:orxz}" @click="orshow($event,tit)" style="line-height: 1.478rem">分类</span>
           <span class="el-icon-caret-bottom" :class="{xz:orxz}"></span>
         </div>
         <div class="titt" @click="dj1">
-          <span :class="{xz:orz}" style="line-height: 0.5rem"  @click="orshow1">排序</span>
+          <span :class="{xz:orz}" style="line-height: 1.478rem"  @click="orshow1">排序</span>
           <span class="el-icon-caret-bottom" :class="{xz:orz}"></span>
         </div>
         <div class="titt" @click="dj2">
-          <span :class="{xz:orx}" style="line-height: 0.5rem"  @click="orshow2">筛选</span>
+          <span :class="{xz:orx}" style="line-height: 1.478rem"  @click="orshow2">筛选</span>
           <span class="el-icon-caret-bottom " :class="{xz:orx}"></span>
         </div>
       </div>
@@ -119,7 +119,7 @@
 
       <div class="liebiao">
         <ul>
-          <li v-for="al in alll" class="sjli" @click="car(al.id)">
+          <li v-for="al in alll" class="sjli" @click="car">
             <img :src="imghf+al.image_path" alt="" class="sj">
             <div class="shopright">
               <header data-v-2df9c5b6="" class="shop_detail_header"><h4 data-v-2df9c5b6="" class="shop_title ellipsis premium"><span class="pp">品牌</span>效果演示</h4>
@@ -177,16 +177,16 @@
           orz: false,
           all: null,
           sz: '',
-          jd:this.$route.query.longitude,
-          wd:this.$route.query.latitude,
-          tit:this.$route.query.title,
+          jd:this.$route.query.jd,
+          wd:this.$route.query.wd,
+          tit:this.$route.query.tit,
           index:null,
           show2:false,
           show3:false,
           show4:false,
           duihao:false,
           alll:'',
-			id:"",
+
           imghf:'https://elm.cangdu.org/img/',
           sw:false,
           ls:[
@@ -213,8 +213,9 @@
         }
       },
       methods: {
-          car(id){
-               this.$router.push({name:'sp',params:{id:id}})
+          car(){
+
+               this.$router.push({name:'car'})
           },
         dh($event,index){
           var ll =document.getElementById("only")
@@ -351,8 +352,7 @@
 
         },
           fh(){
-//          this.$router.push({name:"home"});
-history.go(-1)
+            this.$router.push({name:"home"});
           }
       },
       created() {
@@ -396,8 +396,7 @@ history.go(-1)
         });
         Vue.axios.get(`http://cangdu.org:8001/shopping/restaurants?latitude=${this.jd}&longitude=${this.wd}`).then((response)=>{
            this.alll = response.data;
-           
-              console.log(this.alll)
+           // console.log(this.alll)
         });
 
       }
@@ -405,119 +404,118 @@ history.go(-1)
 </script>
 
 <style scoped>
-	
   /* 筛选 */
   .clear_all {
     background-color: #fff;
-    margin-right: .156rem;
-    border: .008rem solid #fff;
+    margin-right: .5rem;
+    border: .025rem solid #fff;
     text-align: center;
     align-items: center;
   }
   .confirm_select{
     background-color: #56d176;
     color: #fff;
-    border: .008rem solid #56d176;
+    border: .025rem solid #56d176;
     text-align: center;
     align-items: center;
   }
   .filter_button_style{
     width: 47%;
-    height: .56rem;
-    font-size: .156rem;
-    line-height: .56rem;
-    border-radius: .0625rem;
+    height: 1.8rem;
+    font-size: .8rem;
+    line-height: 1.8rem;
+    border-radius: .2rem;
   }
 .confirm_filter{
     display: -ms-flexbox;
     display: flex;
     background-color: #f1f1f1;
     width: 100%;
-    padding: .093rem .0625rem;
+    padding: .3rem .2rem;
   }
   .yx{
     display: flex;
     flex-wrap: wrap;
-    padding: 0 .156rem;
+    padding: 0 .5rem;
     background-color: #fff;
-    padding-left: 0.421rem;
+    padding-left: 1.347rem;
   }
   .lii{
     display: flex;
     align-items: center;
-    border: .008rem solid #eee;
+    border: .025rem solid #eee;
     -ms-flex-align: center;
-    width: 1.156rem;
-    height: rem;
-    margin-right: .078rem;
-    border-radius: .039rem;
-    padding: 0 .08rem;
-    margin-bottom: .08rem;
+    width: 3.7rem;
+    height: 1.4rem;
+    margin-right: .25rem;
+    border-radius: .125rem;
+    padding: 0 .25rem;
+    margin-bottom: .25rem;
   }
   .sp{
-    font-size: .125rem;
+    font-size: .4rem;
     color: #333;}
   .bi{
-    width: 0.3125rem;
-    height: 0.3125rem;
+    width: 1rem;
+    height: 1rem;
   }
   #psfs{
     width: 100%;
     background: white;
-    padding-left:0.1562rem ;
+    padding-left:0.5rem ;
   }
   #fn{
     width: 30%;
-    border: 0.0312rem solid #f5f5f5;
+    border: 0.1rem solid #f5f5f5;
   }
   .sjsx{
     width: 100%;
-    font-size: .125rem;
+    font-size: .4rem;
     color: #333;
-    line-height: 0.469rem;
-    height: .469rem;
+    line-height: 1.5rem;
+    height: 1.5rem;
     text-align: left;
-    padding-left: .1562rem;
+    padding-left: .5rem;
     background-color: #fff;
   }
   .filter_icon {
-    width: .25rem;
-    height: .25rem;
-    font-size: .1562rem;
-    border: .008rem solid #e4e4e4;
-    border-radius: .0469rem;
-    margin-right: .078rem;
-    line-height: .25rem;
+    width: .8rem;
+    height: .8rem;
+    font-size: .5rem;
+    border: .025rem solid #e4e4e4;
+    border-radius: .15rem;
+    margin-right: .25rem;
+    line-height: .8rem;
     text-align: center;
   }
   /*排序*/
   .imgs{
-    width: 0.469rem;
-    height: 0.469rem;
-    margin: 0 .093rem 0 .25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 .3rem 0 .8rem;
   }
   .duihao{
-    font-size: 0.2227rem;
+    font-size: 0.869rem;
     color: deepskyblue;
     position: absolute;
-    right: 0.3125rem;
+    right: 1rem;
 
   }
   .ll{
-    height: 0.7813rem;
+    height: 2.5rem;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-align: center;
     align-items: center;
     color: #666;
     background: white;
-    font-size: 0.094rem;
+    font-size: 0.3rem;
   }
   .px{
     position: fixed;
-    height: 2.5rem;
+    height: 8rem;
     z-index: 102;
-    top: 1.06rem;
+    top: 3.39rem;
     left: 0;
     right: 0;
     flex-direction: column;
@@ -528,13 +526,13 @@ history.go(-1)
   /*end*/
   .bo{
     width: 100%;
-    height:11.031rem;
-    margin-top: 5rem;
+    height:35.30rem;
+    margin-top: 16.0rem;
     background: #b2b2b2;
     opacity: 0.5;
   }
   .liebiao{
-    margin-top: 1.181rem;
+    margin-top: 3.78rem;
   }
 .headtop{
   background-color: #3190e8;
@@ -543,22 +541,22 @@ history.go(-1)
   left: 0;
   top: 0;
   width: 100%;
-  height: 0.61rem;
+  height: 1.95rem;
 }
 .nav{
   position: fixed;
   left: 0;
   right: 0;
-  top:1.06rem;
+  top: 3.39rem;
   z-index: 102;
 
 }
 .jt{
-  font-size:0.4375rem ;
+  font-size:1.4rem ;
   color: white;
 }
   .tit{
-    font-size: 0.25rem;
+    font-size: .8rem;
     color: #fff;
     text-align: center;
     font-weight: 700;
@@ -573,22 +571,21 @@ history.go(-1)
     justify-content: space-around;
     justify-items: center;
     flex-direction: row;
-    border-bottom: .008rem solid #f1f1f1;
+    border-bottom: .025rem solid #f1f1f1;
     background: rgba(255,255,255,1);
     position: fixed;
     z-index: 101;
     left: 0;
     right: 0;
-   top: 0.6093rem;
+    top: 1.95rem;
     width: 100%;
-    height: 6%;
+    height: 4%;
 
   }
   .titt{
-    border-right: .008rem solid #f1f1f1;
+    border-right: .025rem solid #f1f1f1;
     vertical-align: center;
-    padding-bottom: 0.1356rem;
-    padding-right: 0.1rem;
+    padding-bottom: 0.434rem;
     text-align: center;
   }
   .titt:last-child{
@@ -603,15 +600,15 @@ history.go(-1)
     transition: all 0.5s;
   }
   .tb{
-    width: .25rem;
-    height: .25rem;
+    width: .8rem;
+    height: .8rem;
     vertical-align: middle;
-    margin-right: .0625rem;
+    margin-right: .2rem;
   }
   .alname{
-    font-size: .1562rem;
+    font-size: .5rem;
     color: #666;
-    line-height: 0.5625rem;
+    line-height: 1.8rem;
   }
   .ha{
 
@@ -627,50 +624,50 @@ history.go(-1)
   .right{
     background: white;
     width: 50%;
-    height: 5.025rem;
+    height: 16.08rem;
     overflow-x: hidden;
   }
 .right::-webkit-scrollbar {display:none}
   .sum{
     display: inline-block;
     background-color: #ccc;
-    font-size: .125rem;
+    font-size: .4rem;
     color: #fff;
-    padding: 0 .03125rem;
-    border: .008rem solid #ccc;
-    border-radius: .25rem;
+    padding: 0 .1rem;
+    border: .025rem solid #ccc;
+    border-radius: .8rem;
     vertical-align: middle;
-    margin-left: 0.3656rem;
+    margin-left: 1.17rem;
   }
   .el-icon-arrow-right{
     color: #cfcfcf;
   }
   .oneli{
-    padding-left: 0.094rem;
+    padding-left: 0.3rem;
   }
   .twoli{
-    border-bottom: 0.04rem solid whitesmoke;
-    margin-left: 0.3656rem;
+    border-bottom: 1px solid whitesmoke;
+    margin-left: 1.17rem;
   }
   .cou{
     display: inline-block;
-    font-size: .125rem;
+    font-size: .4rem;
     color: black;
     vertical-align: middle;
     float: right;
-    margin-right: 0.1562rem;
-    margin-top: 0.1562rem;
+    margin-right: 0.5rem;
+    margin-top: 0.5rem;
   }
 .sjli{
   display: flex;
-  border-bottom: .008rem solid #f1f1f1;
-  padding: .2188rem .125rem;
+  border-bottom: .025rem solid #f1f1f1;
+  padding: .7rem .4rem;
 }
 .sj{
-  width: 0.844rem;
-  height: 0.8447rem;
+  width: 2.7rem;
+  height: 2.7rem;
   display: block;
-  margin-right: .125rem;
+  margin-right: .4rem;
 }
 .shop_detail_header{
   display: -ms-flexbox;
@@ -681,87 +678,85 @@ history.go(-1)
   align-items: center;
 }
 .shop_title {
-  width: 2.656rem;
+  width: 8.5rem;
   color: #333;
-  padding-top: .0031rem;
-  font: .2rem/.2rem PingFangSC-Regular;
+  padding-top: .01rem;
+  font: .65rem/.65rem PingFangSC-Regular;
   font-weight: 700;
 }
 .shop_detail_ul {
   display: -ms-flexbox;
   display: flex;
   transform: scale(.8);
-  margin-right: -.0938rem;
+  margin-right: -.3rem;
 }
 .shopright{
   position: relative;
 }
 .supports{
-  font-size: .1562rem;
+  font-size: .5rem;
   color: #999;
-  border: .008rem solid #f1f1f1;
-  padding: 0 .0125rem;
-  border-radius: .025rem;
-  margin-left: .01562rem;
+  border: .025rem solid #f1f1f1;
+  padding: 0 .04rem;
+  border-radius: .08rem;
+  margin-left: .05rem;
 
 }
 .pp{
   content: "\54C1\724C";
   display: inline-block;
-  font-size: .1562rem;
-  line-height: .1875rem;
+  font-size: .5rem;
+  line-height: .6rem;
   color: #333;
   background-color: #ffd930;
   padding: 0 .1rem;
-  border-radius: .03125rem;
-  margin-right: .0625rem;
+  border-radius: .1rem;
+  margin-right: .2rem;
 }
 .block{
   transform: scale(0.6);
   position: absolute;
   display: -ms-flexbox;
   display: flex;
-  top: 0.3rem;
-  left: -0.25rem;
+  top: 1rem;
+  left: -0.8rem;
 }
 .ys{
   transform: scale(.8);
   display: inline-block;
-  margin-left: 1.5rem;
-/*  line-height: 3;*/
-  font-size: .0938rem;
+  margin-left: 4rem;
+  line-height: 3;
+  font-size: .3rem;
   color: #666;
-  margin-top: 0.13rem;
 }
 .delivery_left{
   display: inline-block;
   transform: scale(0.6);
-  font-size: .03125rem;
+  font-size: .1rem;
   color: #fff;
   background-color: #3190e8;
-  border: .008rem solid #3190e8;
-  margin-left: 0.2581rem;
+  border: .025rem solid #3190e8;
+  margin-left: 0.826rem;
 }
 .delivery_right{
   display: inline-block;
   transform: scale(0.6);
-  font-size: .03125rem;
+  font-size: .1rem;
   color: #3190e8;
-  border: .008rem solid #3190e8;
-  margin-left: -0.2581rem;
+  border: .025rem solid #3190e8;
+  margin-left: -0.826rem;
 }
 .fee{
- transform: scale(.85);
-  font-size: .1562rem;
+  transform: scale(.7);
+  font-size: .5rem;
   color: #666;
-  margin-left: -0.3rem;
- margin-top: 0.2rem;
+  margin-left: -1rem;
 }
 .distance_time{
   transform: scale(.7);
   position: absolute;
-  right: -0.4062rem;
-  top: 0.666rem;
+  right: -1.30rem;
+  top: 2.13rem;
 }
 .dis{
   color: #999;
