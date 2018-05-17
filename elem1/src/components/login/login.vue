@@ -21,7 +21,7 @@
       <button @click="submitA">登录</button>
     </div>
     <div class="reset">
-      <a href="">重置密码?</a>
+    <router-link to="/forget">重置密码?</router-link>
     </div>
   </div>
 </template>
@@ -60,7 +60,7 @@
         }
         let url = "https://elm.cangdu.org/v2/login";
         Vue.postLogin(url, data, (res) => {
-          console.log(res);
+          // console.log(res);
           if (res.status != 0) {
             this.$router.push({
               name: 'my',

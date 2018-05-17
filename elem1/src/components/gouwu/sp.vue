@@ -1,5 +1,6 @@
 <template>
 
+
   <div class="sp">
 
     <div class="left2">
@@ -101,501 +102,507 @@
 
   </div>
 
- 
+
 
 </template>
 
 <script>
+
   import Vue from "vue";
 
-  export default {
-    name: "sp",
-    data() {
-      return {
-        id: null,
-        datas: [],
-        h: 0,
-        num: [],
-        num1: [],
-        price: 0,
-        index: 0,
-        money: 20,
-        index1: 0,
-        xx: false,
-        arr: [],
-        arr1: [],
-        num2: []
-      }
-    },
-    created() {
-      if (this.$route.params.id) {
-        this.id = this.$route.params.id
-        localStorage.setItem("id", JSON.stringify(this.id))
-      } else {
-        this.id = JSON.parse(localStorage.getItem("id"))
-      }
+	import Vue from "vue";
+
+	export default {
+		name: "sp",
+		data() {
+			return {
+				id: null,
+				datas: [],
+				h: 0,
+				num: [],
+				num1: [],
+				price: 0,
+				index: 0,
+				money: 20,
+				index1: 0,
+				xx: false,
+				arr: [],
+				arr1: [],
+				num2: []
+			}
+		},
+		created() {
+			if(this.$route.params.id) {
+				this.id = this.$route.params.id
+				localStorage.setItem("id", JSON.stringify(this.id))
+			} else {
+				this.id = JSON.parse(localStorage.getItem("id"))
+			}
 
 
-      let api1 = "http://cangdu.org:8001/shopping/v2/menu?restaurant_id=" + this.id;
-      console.log(api1)
-      Vue.axios.get(api1).then((res) => {
-        this.datas = res.data;
-        console.log(this.datas)
-      })
-    },
-    methods: {
-      bai(index, e) {
-        var uls = document.getElementsByClassName("uls")
-        if (e.target.tagName == "LI") {
-          $(".li1").css({
-            background: "rgb(232,232,232)",
-            opacity: 0.6
-          });
-          e.target.style.backgroundColor = "white";
-          e.target.style.opacity = 1;
-          this.h = 0
-          for (var i = 0; i < index; i++) {
-            this.h -= uls[i].offsetHeight
-          }
-          $(".right").css("top", this.h)
-        }
-      },
-      add1(length1, length, index1, index, e) {
+			let api1 = "http://cangdu.org:8001/shopping/v2/menu?restaurant_id=" + this.id;
+			console.log(api1)
+			Vue.axios.get(api1).then((res) => {
+				this.datas = res.data;
+				console.log(this.datas)
+			})
+		},
+		methods: {
+			bai(index, e) {
+				var uls = document.getElementsByClassName("uls")
+				if(e.target.tagName == "LI") {
+					$(".li1").css({
+						background: "rgb(232,232,232)",
+						opacity: 0.6
+					});
+					e.target.style.backgroundColor = "white";
+					e.target.style.opacity = 1;
+					this.h = 0
+					for(var i = 0; i < index; i++) {
+						this.h -= uls[i].offsetHeight
+					}
+					$(".right").css("top", this.h)
+				}
+			},
+			add1(length1, length, index1, index, e) {
 
-      },
-      add2(e) {
-        e.target.parentNode.lastChild.style.display = "block"
-      },
-      jian1(index, e) {
-        this.arr1[index] -= 2
-        if (this.arr1[index] <= 0) {
-          this.arr1[index] = 0
-          e.target.parentNode.style.display = "none"
-        }
-        this.index -= 2
-        if (this.index <= 0) {
-          this.index = 0
-          this.xx = false
-        }
-      },
-      xiaoshi(e) {
-        if (e.target.className == "maskx") {
-          e.target.style.display = "none"
-        }
-      },
-      qian(qian, e) {
-        var change = document.getElementsByClassName("change")
-        console.log(qian)
-        this.money = qian
-        console.log(e.target)
-        for (var i = 0; i < change.length; i++) {
-          change[i].style.border = "1px solid lightgray"
-          change[i].style.color = "black"
-        }
-        e.target.style.border = "1px solid lightblue"
-        e.target.style.color = "lightblue"
-      }
+			},
+			add2(e) {
+				e.target.parentNode.lastChild.style.display = "block"
+			},
+			jian1(index, e) {
+				this.arr1[index] -= 2
+				if(this.arr1[index] <= 0) {
+					this.arr1[index] = 0
+					e.target.parentNode.style.display = "none"
+				}
+				this.index -= 2
+				if(this.index <= 0) {
+					this.index = 0
+					this.xx = false
+				}
+			},
+			xiaoshi(e) {
+				if(e.target.className == "maskx") {
+					e.target.style.display = "none"
+				}
+			},
+			qian(qian, e) {
+				var change = document.getElementsByClassName("change")
+				console.log(qian)
+				this.money = qian
+				console.log(e.target)
+				for(var i = 0; i < change.length; i++) {
+					change[i].style.border = "1px solid lightgray"
+					change[i].style.color = "black"
+				}
+				e.target.style.border = "1px solid lightblue"
+				e.target.style.color = "lightblue"
+			}
 
-    }
-  }
+		}
+	}
 </script>
 
 <style scoped>
-  .mask0 {
-    width: 92%;
-    margin: 0 auto;
-  }
+	.mask0 {
+		width: 92%;
+		margin: 0 auto;
+	}
 
-  .maskx {
-    width: 4.7rem;
-    height: 8.3rem;
-    background: rgba(0, 0, 0, 0.2);
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 100000;
-    display: none;
-  }
+	.maskx {
+		width: 4.7rem;
+		height: 8.3rem;
+		background: rgba(0, 0, 0, 0.2);
+		position: fixed;
+		left: 0;
+		top: 0;
+		z-index: 100000;
+		display: none;
+	}
 
-  .mask1 {
-    overflow: hidden;
-    text-align: left;
-  }
+	.mask1 {
+		overflow: hidden;
+		text-align: left;
+	}
 
-  .mask1 span {
-    display: inline-block;
-    font-size: 0.15rem;
-    border: 1px solid lightgray;
-    padding: 0.1rem 0.1rem;
-    border-radius: 0.1rem;
-    margin-left: 0.1rem;
-    margin-top: 0.1rem;
-  }
+	.mask1 span {
+		display: inline-block;
+		font-size: 0.15rem;
+		border: 1px solid lightgray;
+		padding: 0.1rem 0.1rem;
+		border-radius: 0.1rem;
+		margin-left: 0.1rem;
+		margin-top: 0.1rem;
+	}
 
-  .mask1 span:nth-child(1) {
-    border: 1px solid lightblue;
-    color: lightblue;
-  }
+	.mask1 span:nth-child(1) {
+		border: 1px solid lightblue;
+		color: lightblue;
+	}
 
-  .mask2 {
-    margin-top: 0.1rem;
-    font-size: 0.2rem;
-    text-align: center;
-  }
+	.mask2 {
+		margin-top: 0.1rem;
+		font-size: 0.2rem;
+		text-align: center;
+	}
 
-  .mask2 div {
-    width: 0.4rem;
-    font-size: 0.18rem;
-  }
+	.mask2 div {
+		width: 0.4rem;
+		font-size: 0.18rem;
+	}
 
-  .mask4 {
-    overflow: hidden;
-    margin-top: 0.2rem;
-    height: 0.6rem;
-  }
+	.mask4 {
+		overflow: hidden;
+		margin-top: 0.2rem;
+		height: 0.6rem;
+	}
 
-  .mask4 div:nth-child(1) {
-    float: left;
-    font-size: 0.2rem;
-    line-height: 0.5rem;
-    color: orange;
-  }
+	.mask4 div:nth-child(1) {
+		float: left;
+		font-size: 0.2rem;
+		line-height: 0.5rem;
+		color: orange;
+	}
 
-  .mask4 div:nth-child(1) span {
-    font-size: 0.1rem;
-  }
+	.mask4 div:nth-child(1) span {
+		font-size: 0.1rem;
+	}
 
-  .mask4 div:nth-child(2) {
-    float: right;
-    font-size: 0.18rem;
-    background: lightblue;
-    padding: 0.05rem 0.1rem;
-    border-radius: 0.05rem;
-  }
+	.mask4 div:nth-child(2) {
+		float: right;
+		font-size: 0.18rem;
+		background: lightblue;
+		padding: 0.05rem 0.1rem;
+		border-radius: 0.05rem;
+	}
 
-  .mask {
-    position: absolute;
-    width: 3rem;
-    left: 0.8rem;
-    z-index: 22222;
-    background: yellow;
-    top: 4rem;
-  }
+	.mask {
+		position: absolute;
+		width: 3rem;
+		left: 0.8rem;
+		z-index: 22222;
+		background: yellow;
+		top: 4rem;
+	}
 
-  .gou4 {
-    position: absolute;
-    right: 0.50rem;
-    top: 0.52rem;
-  }
+	.gou4 {
+		position: absolute;
+		right: 0.50rem;
+		top: 0.52rem;
+	}
 
-  .gou1 {
-    width: 0.7rem;
-    height: 0.3rem;
-    background: lightblue;
-    font-size: 0.1rem;
-    line-height: 0.3rem;
-    text-align: center;
-    position: absolute;
-    right: 0.2rem;
-    top: 0.5rem;
-  }
+	.gou1 {
+		width: 0.7rem;
+		height: 0.3rem;
+		background: lightblue;
+		font-size: 0.1rem;
+		line-height: 0.3rem;
+		text-align: center;
+		position: absolute;
+		right: 0.2rem;
+		top: 0.5rem;
+	}
 
-  .lis .gou3 {
-    display: none;
-  }
+	.lis .gou3 {
+		display: none;
+	}
 
-  .lis .gou2 img {
-    width: 0.25rem;
-    height: 0.25rem;
-    position: absolute;
-    right: 0.2rem;
-    top: 0.5rem;
-  }
+	.lis .gou2 img {
+		width: 0.25rem;
+		height: 0.25rem;
+		position: absolute;
+		right: 0.2rem;
+		top: 0.5rem;
+	}
 
-  .lis .gou3 img {
-    width: 0.25rem;
-    height: 0.25rem;
-    position: absolute;
-    right: 0.7rem;
-    top: 0.5rem;
-  }
+	.lis .gou3 img {
+		width: 0.25rem;
+		height: 0.25rem;
+		position: absolute;
+		right: 0.7rem;
+		top: 0.5rem;
+	}
 
-  .footer {
-    width: 100%;
-    height: 0.6rem;
-    background: black;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-between;
-  }
+	.footer {
+		width: 100%;
+		height: 0.6rem;
+		background: black;
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		display: flex;
+		justify-content: space-between;
+	}
 
-  .foot2 {
-    width: 0.7rem;
-    height: 0.7rem;
-    background: black;
-    position: absolute;
-    left: 0.2rem;
-    bottom: 0.15rem;
-    z-index: 2222;
-    border-radius: 0.35rem;
-  }
+	.foot2 {
+		width: 0.7rem;
+		height: 0.7rem;
+		background: black;
+		position: absolute;
+		left: 0.2rem;
+		bottom: 0.15rem;
+		z-index: 2222;
+		border-radius: 0.35rem;
+	}
 
-  .foot2 div {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 0.3rem;
-    background: blue;
-    margin: 0 auto;
-    margin-top: 0.05rem;
-  }
+	.foot2 div {
+		width: 0.6rem;
+		height: 0.6rem;
+		border-radius: 0.3rem;
+		background: blue;
+		margin: 0 auto;
+		margin-top: 0.05rem;
+	}
 
-  .foot2 .foot5 {
-    position: absolute;
-    width: 0.2rem;
-    height: 0.2rem;
-    text-align: center;
-    color: white;
-    font-weight: 100;
-    font-size: 0.18rem;
-    line-height: 0.2rem;
-    background: red;
-    top: 0;
-    right: 0;
-  }
+	.foot2 .foot5 {
+		position: absolute;
+		width: 0.2rem;
+		height: 0.2rem;
+		text-align: center;
+		color: white;
+		font-weight: 100;
+		font-size: 0.18rem;
+		line-height: 0.2rem;
+		background: red;
+		top: 0;
+		right: 0;
+	}
 
-  .foot2 img {
-    width: 0.5rem;
-    margin-top: 0.05rem;
-    margin-left: 0.03rem;
-  }
+	.foot2 img {
+		width: 0.5rem;
+		margin-top: 0.05rem;
+		margin-left: 0.03rem;
+	}
 
-  .foot3 div {
-    color: white;
-    margin-top: 0.1rem;
-    margin-left: 1.1rem;
-  }
+	.foot3 div {
+		color: white;
+		margin-top: 0.1rem;
+		margin-left: 1.1rem;
+	}
 
-  .foot3 div:nth-child(1) {
-    font-size: 0.23n rem;
-  }
+	.foot3 div:nth-child(1) {
+		font-size: 0.23n rem;
+	}
 
-  .foot3 div:nth-child(2) {
-    font-size: 0.15rem;
-    font-weight: 100;
-  }
+	.foot3 div:nth-child(2) {
+		font-size: 0.15rem;
+		font-weight: 100;
+	}
 
-  .foot4 {
-    width: 1.5rem;
-    height: 0.6rem;
-    background: greenyellow;
-    text-align: center;
-    line-height: 0.6rem;
-  }
+	.foot4 {
+		width: 1.5rem;
+		height: 0.6rem;
+		background: greenyellow;
+		text-align: center;
+		line-height: 0.6rem;
+	}
 
-  .foot4 a {
-    display: inline-block;
-    width: 1.5rem;
-    height: 0.6rem;
-    color: white;
-  }
+	.foot4 a {
+		display: inline-block;
+		width: 1.5rem;
+		height: 0.6rem;
+		color: white;
+	}
 
-  .new3 {
-    position: relative;
-  }
+	.new3 {
+		position: relative;
+	}
 
-  .new1 {
-    display: block;
-    width: 0rem;
-    height: 0rem;
-    position: absolute;
-    left: -0.12rem;
-    top: -0.2rem;
-    text-align: center;
-    border-right: 0.4rem solid transparent;
-  }
+	.new1 {
+		display: block;
+		width: 0rem;
+		height: 0rem;
+		position: absolute;
+		left: -0.12rem;
+		top: -0.2rem;
+		text-align: center;
+		border-right: 0.4rem solid transparent;
+	}
 
-  .new1 span {
-    display: inline-block;
-    position: absolute;
-    font-size: 0.05rem;
-    transform: rotateZ(-45deg);
-    width: 0.5rem;
-    height: 0.2rem;
-    top: -0.33rem;
-    left: -0.1rem;
-  }
+	.new1 span {
+		display: inline-block;
+		position: absolute;
+		font-size: 0.05rem;
+		transform: rotateZ(-45deg);
+		width: 0.5rem;
+		height: 0.2rem;
+		top: -0.33rem;
+		left: -0.1rem;
+	}
 
-  .new2 {
-    position: absolute;
-    right: 0.2rem;
-    font-size: 0.1rem;
-    border-radius: 0.1rem;
-  }
+	.new2 {
+		position: absolute;
+		right: 0.2rem;
+		font-size: 0.1rem;
+		border-radius: 0.1rem;
+	}
 
-  .num {
-    position: absolute;
-    top: 0.1rem;
-    right: 0.1rem;
-    width: 0.2rem;
-    height: 0.2rem;
-    background: red;
-    line-height: 0.22rem;
-    text-align: center;
-    border-radius: 0.1rem;
-    color: white;
-  }
+	.num {
+		position: absolute;
+		top: 0.1rem;
+		right: 0.1rem;
+		width: 0.2rem;
+		height: 0.2rem;
+		background: red;
+		line-height: 0.22rem;
+		text-align: center;
+		border-radius: 0.1rem;
+		color: white;
+	}
 
-  .sp {
-    width: 100%;
-    border-top: 1px solid #ededed;
-    height: 8.3375rem;
-  }
+	.sp {
+		width: 100%;
+		border-top: 1px solid #ededed;
+		height: 8.3375rem;
+	}
 
-  ul {
-    float: left;
-  }
+	ul {
+		float: left;
+	}
 
-  .left1 {
-    height: 6rem;
-    width: 100%;
-    position: absolute;
-    left: 0;
-    top: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+	.left1 {
+		height: 6rem;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
 
-  .left1::-webkit-scrollbar {
-    display: none
-  }
+	.left1::-webkit-scrollbar {
+		display: none
+	}
 
-  .left {
-    position: absolute;
-    top: 0;
-  }
+	.left {
+		position: absolute;
+		top: 0;
+	}
 
-  .left2 {
-    overflow: hidden;
-    width: 1.1rem;
-    position: fixed;
-    top: 2rem;
-    left: 0;
-    height: 6rem;
-  }
+	.left2 {
+		overflow: hidden;
+		width: 1.1rem;
+		position: fixed;
+		top: 2rem;
+		left: 0;
+		height: 6rem;
+	}
 
-  .left li {
-    height: 0.8rem;
-    width: 1rem;
-    padding-left: 0.1rem;
-    line-height: 0.8rem;
-    border-bottom: 0.02rem solid #ededed;
-    border-left: 0.02rem solid #f8f8f8;
-    opacity: 0.5;
-    font-size: 0.17rem;
-    background-color: rgb(232, 232, 232);
-    overflow: hidden;
-  }
+	.left li {
+		height: 0.8rem;
+		width: 1rem;
+		padding-left: 0.1rem;
+		line-height: 0.8rem;
+		border-bottom: 0.02rem solid #ededed;
+		border-left: 0.02rem solid #f8f8f8;
+		opacity: 0.5;
+		font-size: 0.17rem;
+		background-color: rgb(232, 232, 232);
+		overflow: hidden;
+	}
 
-  .left li:first-child {
-    background-color: white;
-    opacity: 1;
-    opacity: 1;
-  }
+	.left li:first-child {
+		background-color: white;
+		opacity: 1;
+		opacity: 1;
+	}
 
-  .right {
-    width: 76%;
-    background-color: white;
-    margin-top: 2rem;
-    position: absolute;
-    right: 0;
-  }
+	.right {
+		width: 76%;
+		background-color: white;
+		margin-top: 2rem;
+		position: absolute;
+		right: 0;
+	}
 
-  .right ul {
-    width: 100%;
-    /*  margin-left:0.1rem;*/
-  }
+	.right ul {
+		width: 100%;
+		/*  margin-left:0.1rem;*/
+	}
 
-  .right .divh {
-    height: 0.6rem;
-    background-color: rgb(232, 232, 232);
-    line-height: 0.6rem;
-    width: 100%;
-  }
+	.right .divh {
+		height: 0.6rem;
+		background-color: rgb(232, 232, 232);
+		line-height: 0.6rem;
+		width: 100%;
+	}
 
-  .right .span1 {
-    margin-left: 0.15rem;
-    opacity: 0.7;
-    font-weight: bolder;
-  }
+	.right .span1 {
+		margin-left: 0.15rem;
+		opacity: 0.7;
+		font-weight: bolder;
+	}
 
-  .right .span2 {
-    font-size: 0.15rem;
-    opacity: 0.5;
-  }
+	.right .span2 {
+		font-size: 0.15rem;
+		opacity: 0.5;
+	}
 
-  .li1 img {
-    width: 0.15rem;
-  }
+	.li1 img {
+		width: 0.15rem;
+	}
 
-  .li1 {
-    position: relative;
-  }
+	.li1 {
+		position: relative;
+	}
 
-  .right li img {
-    width: 0.6rem;
-    height: 0.6rem;
-  }
+	.right li img {
+		width: 0.6rem;
+		height: 0.6rem;
+	}
 
-  .lis {
-    height: 1.65rem;
-    border-bottom: 1px solid #e6e6e6;
-    margin-top: 0.2rem;
-    margin-left: 0.1rem;
-    position: relative;
-  }
+	.lis {
+		height: 1.65rem;
+		border-bottom: 1px solid #e6e6e6;
+		margin-top: 0.2rem;
+		margin-left: 0.1rem;
+		position: relative;
+	}
 
-  .lis img {
-    float: left;
-  }
+	.lis img {
+		float: left;
+	}
 
-  .arrs {
-    float: left;
-    margin-left: 0.1rem;
-  }
+	.arrs {
+		float: left;
+		margin-left: 0.1rem;
+	}
 
-  .this1 {
-  }
+	.this1 {}
 
-  .arrs .this2 {
-    font-size: 0.12rem;
-    color: #b6b6b6;
-    margin-top: 0.1rem;
-  }
+	.arrs .this2 {
+		font-size: 0.12rem;
+		color: #b6b6b6;
+		margin-top: 0.1rem;
+	}
 
-  .this3 {
-    font-size: 0.15rem;
-    margin-top: 0.1rem;
-  }
+	.this3 {
+		font-size: 0.15rem;
+		margin-top: 0.1rem;
+	}
 
-  .this4 {
-    font-size: 0.1rem;
-    margin-top: 0.15rem;
-  }
+	.this4 {
+		font-size: 0.1rem;
+		margin-top: 0.15rem;
+	}
 
-  .this4 span {
-    border-radius: 0.1rem;
-  }
+	.this4 span {
+		border-radius: 0.1rem;
+	}
 
-  .this5 span {
-    color: rgb(241, 136, 79);
-  }
+	.this5 span {
+		color: rgb(241, 136, 79);
+	}
 
-  .this5 {
-    margin-top: 0.2rem;
-  }
+	.this5 {
+		margin-top: 0.2rem;
+	}
 </style>
+
+
+
+
 
 
 

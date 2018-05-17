@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import first from "@/components/first/first";
 import login from "@/components/login/login";
+import forget from "@/components/login/forget";
 import city from "@/components/city/city";
 import shop from "@/components/shop/shop";
 import waimai from "@/components/waimai/waimai";
@@ -24,6 +25,9 @@ import service from "@/components/my/service";
 import questiondetail from "@/components/my/questiondetail"
 import vipcard from "@/components/my/vipcard";
 import pay from "@/components/my/pay";
+import balance from "@/components/my/balance";
+import benefit from "@/components/my/benefit";
+import points from "@/components/my/points";
 
 Vue.use(Router)
 export default new Router({
@@ -140,6 +144,22 @@ export default new Router({
       path: '/pay',
       name: 'pay',
       component: pay
+    },{
+    path:'/forget',
+      name:'forget',
+      component:forget
+    },{
+    path:'/points',
+      name:'points',
+      component:points
+    },{
+      path:'/balance',
+      name:'balance',
+      component:balance
+    },{
+      path:'/benefit',
+      name:'benefit',
+      component:benefit
     }
 
   ]
