@@ -21,6 +21,7 @@ import addDetail from "@/components/addDetail/addDetail";
 import jifen from "@/components/jifen/jifen";
 import gouwu from "@/components/gouwu/gouwu";
 import sp from "@/components/gouwu/sp";
+import pj from '@/components/gouwu/pj'
 import service from "@/components/my/service";
 import questiondetail from "@/components/my/questiondetail"
 import vipcard from "@/components/my/vipcard";
@@ -122,7 +123,11 @@ export default new Router({
           path: '/sp',
           name: 'sp',
           component: sp,
-
+        },
+        {
+        	path:'/pj',
+        	name:'pj',
+        	component:pj
         }
       ]
     },
