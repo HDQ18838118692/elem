@@ -101,11 +101,12 @@
       },
       qre(ev) {
         ev.target.parentNode.style.display = "none";
-console.log(1)
-      	  this.axios.get('http://cangdu.org:8001/v2/signout')
+        console.log(1)
+        this.axios.get('http://cangdu.org:8001/v2/signout')
           .then(response => {
-            console.log(response); })
-             this.$router.push({name:'my',params:{username:1}})
+            console.log(response);
+          })
+        this.$router.push({name: 'my', params: {username: 1}})
       },
       tiao2() {
         this.$refs.tiao2.style.display = "block";
@@ -115,7 +116,7 @@ console.log(1)
         Vue.axios.get(url).then((res) => {
           console.log(res)
         })
-     
+
       }
 
     }

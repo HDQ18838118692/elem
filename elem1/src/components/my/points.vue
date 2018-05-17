@@ -1,7 +1,7 @@
 <template>
 <div class="points">
   <div class="header">
-    <router-link to="/"><</router-link>
+    <router-link to="/my"><</router-link>
     我的积分
   </div>
   <div class="main">

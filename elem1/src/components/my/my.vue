@@ -1,7 +1,7 @@
 <template>
   <div class="mine">
     <div class="header">
-      <router-link to="/"><</router-link>
+      <span @click="go"><</span>
       我的
     </div>
     <router-link :to="url">
@@ -95,7 +95,7 @@
       return {
         phone: '登录/注册',
         imgs: require("./img/people.png"),
-        url:"/usermes"
+        url: "/usermes"
 
       }
     },
@@ -103,22 +103,22 @@
 //       if (JSON.parse(localStorage.getItem("arr"))) {
 //         this.phone = JSON.parse(localStorage.getItem("arr"))
 //       }
-console.log(this.$route.params.username)
+      console.log(this.$route.params.username)
       if (this.$route.params.username) {
         this.phone = this.$route.params.username
-         localStorage.setItem("arr", JSON.stringify(this.phone));
+        localStorage.setItem("arr", JSON.stringify(this.phone));
 //       console.log(this.phone)
-         if(this.phone==1||this.phone=='登录/注册'){
-         	this.url="/login"
-         	this.phone='登录/注册'
-         }
+        if (this.phone == 1 || this.phone == '登录/注册') {
+          this.url = "/login"
+          this.phone = '登录/注册'
+        }
       } else {
         this.phone = JSON.parse(localStorage.getItem("arr"));
 //       console.log(this.phone)
-         if(this.phone==1||this.phone=='登录/注册'){
-         	this.url="/login"
-         	this.phone='登录/注册'
-         }
+        if (this.phone == 1 || this.phone == '登录/注册') {
+          this.url = "/login"
+          this.phone = '登录/注册'
+        }
       }
     },
     methods: {
@@ -128,6 +128,9 @@ console.log(this.$route.params.username)
       qre(ev) {
         this.$refs.tiao1.style.display = "none";
 
+      },
+      go(){
+        history.go(-1);
       }
     }
   }
@@ -191,7 +194,7 @@ console.log(this.$route.params.username)
     position: relative;
   }
 
-  .header a {
+  .header span {
     position: absolute;
     left: 0.1rem;
     color: white;
