@@ -16,6 +16,11 @@
     <div class="footer">
       <p class="p3">交易明细</p>
     </div>
+
+    <div class="img">
+      <img src="./img/ren.png" alt="">
+      <p>暂无明细记录</p>
+    </div>
   </div>
 </template>
 
@@ -27,7 +32,7 @@
 
 <style scoped>
   .balance {
-    height: 8.3375rem;
+    height: 8.45rem;
     background-color: #f5f5f5;
     font-weight: 100;
   }
@@ -112,6 +117,19 @@
     color: white;
     border-radius: 3%;
     font-size: 0.2rem;
+  }
+  .img{
+    text-align: center;
+    margin-top: 1rem;
 
+  }
+  .img img{
+    width: 2.33rem;
+    height:1.47rem;
+  }
+  .img p{
+    margin-top: 0.2rem;
+    color: #666;
+    font-weight: 200;
   }
 </style>

@@ -45,12 +45,12 @@
         <span>退出登录</span>
       </button>
     </div>
-    <div class="warn" ref="tiao2">
+    <div class="warn animated bounceIn" ref="tiao2">
       <img src="./img/warn2.png" alt="">
       <p>请在手机APP中设置</p>
       <button @click="qre">确认</button>
     </div>
-    <div class="warn" ref="tiao1">
+    <div class="warn animated bounceIn" ref="tiao1">
       <img src="./img/warn2.png" alt="">
       <p>是否退出登录</p>
       <button @click="qre">确认</button>
@@ -121,7 +121,7 @@
 <style scoped>
   .usermes {
     width: 100%;
-    height: 8.3375rem;
+    height: 8.45rem;
     background-color: #f5f5f5;
     position: relative;
 

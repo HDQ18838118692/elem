@@ -6,30 +6,30 @@
     </div>
     <router-link to="/usermes">
       <div class="phone">
-        <img :src="imgs" alt="" class="img1">
+        <img :src="imgs" alt="" class="img5">
         <p class="p1">{{phone}}</p>
-        <p class="p2"><img src="./img/bindphone.png" alt="" class="img2">暂无绑定手机号</p>
+        <p class="p2"><img src="./img/手机.png" alt="" class="img6">暂无绑定手机号</p>
         <span> ></span>
       </div>
     </router-link>
     <ul class="my">
       <router-link to="/balance">
-      <li>
-        <p><span class="span1">0.00</span>元</p>
-        <span>我的余额</span>
-      </li>
+        <li>
+          <p><span class="span1">0.00</span>元</p>
+          <span>我的余额</span>
+        </li>
       </router-link>
       <router-link to="/benefit">
-      <li>
-        <p><span class="span2">3</span>个</p>
-        <span>我的优惠</span>
-      </li>
+        <li>
+          <p><span class="span2">3</span>个</p>
+          <span>我的优惠</span>
+        </li>
       </router-link>
       <router-link to="/points">
-      <li>
-        <p><span class="span3">0</span>分</p>
-        <span>我的积分</span>
-      </li>
+        <li>
+          <p><span class="span3">0</span>分</p>
+          <span>我的积分</span>
+        </li>
       </router-link>
     </ul>
     <ul class="yh">
@@ -124,9 +124,14 @@
 <style scoped>
   .mine {
     width: 100%;
-    height: 7.7675rem;
+    height: 7.96rem;
     background-color: #f5f5f5;
     position: relative;
+  }
+
+  .img6 {
+    width: 0.28rem;
+    height: 0.3rem;
   }
 
   .warn {
@@ -189,7 +194,7 @@
     overflow: hidden;
   }
 
-  .phone .img1 {
+  .phone .img5 {
     width: 0.73rem;
     height: 0.73rem;
     margin: 0.1rem 0.2rem;

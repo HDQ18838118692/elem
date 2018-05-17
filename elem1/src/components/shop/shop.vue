@@ -2,62 +2,103 @@
   <div>
     <router-view></router-view>
 
-      <ul class="footer">
-        <router-link to="/shop/waimai">
-          <li><img src="" alt=""><span>外卖</span></li>
-        </router-link>
-        <router-link to="/shop/search">
-          <li><img src="" alt=""><span>搜索</span></li>
-        </router-link>
-        <router-link to="/dingdan">
-          <li><img src="" alt=""><span>订单</span></li>
-        </router-link>
-        <router-link to="/my">
-          <li><img src="" alt=""><span>我的</span></li>
-          </router-link>
-      </ul>
+    <ul class="footer">
+      <router-link to="/shop/waimai">
+        <li class="li1" @click="bian">
+
+          <img src="./img/1.png" alt="" class="img1" style="display: none">
+          <img src="./img1/1.png" alt="" class="img2" style="display: block">
+          <span>外卖</span>
+        </li>
+      </router-link>
+      <router-link to="/shop/search">
+        <li class="li1" @click="bian">
+          <img src="./img/2.png" alt="" class="img1">
+          <img src="./img1/2.png" alt="" class="img2">
+          <span>搜索</span></li>
+      </router-link>
+      <router-link to="/dingdan">
+        <li class="li1" @click="bian">
+          <img src="./img/3.png" alt="" class="img1">
+          <img src="./img1/3.png" alt="" class="img2">
+          <span>订单</span></li>
+      </router-link>
+      <router-link to="/my">
+        <li class="li1" @click="bian">
+          <img src="./img/4.png" alt="" class="img1">
+          <img src="./img1/4.png" alt="" class="img2">
+          <span>我的</span>
+        </li>
+      </router-link>
+    </ul>
 
 
-
-
-</div>
+  </div>
 
 </template>
 
 <script>
   export default {
-    name: "shop"
+    name: "shop",
+    data() {
+      return {
+        src1: ""
+      }
+    },
+    methods: {
+      bian(e) {
+        $(".img2").css("display", 'none');
+        $(".img1").css("display", 'block');
+        e.currentTarget.children[0].style.display = "none"
+        e.currentTarget.children[1].style.display = "block"
+
+      }
+    }
   }
 </script>
 
 <style scoped>
 
-
-  .footer{
+  .footer {
     width: 100%;
     height: 0.57rem;
-    line-height: 0.57rem;
     position: fixed;
+    /*text-align: center;*/
     z-index: 10;
     bottom: 0;
     overflow: hidden;
-    display: flex;
-    justify-content: space-around;
     background-color: white;
     border-top: 0.5px solid #f5f5f5;
   }
 
-  a {
-    display: block;
+  li {
+    width: 25%;
+    text-align: center;
     float: left;
-    color: #666;
 
   }
-  li{
 
-  }
-  li span{
+  li span {
     font-size: 0.15rem;
     color: #666;
+    display: block;
+    padding-top: 0.01rem;
+    margin-left: -0.02rem;
+    height: 0.2rem;
+    line-height: 0.22rem;
+    font-weight: 200;
+
+  }
+
+  li img {
+    text-align: center;
+    height: 0.25rem;
+    margin-top: 0.1rem;
+    margin-left:0.45rem;
+    display: block;
+  }
+
+  li .img2 {
+    display: none;
   }
 </style>
