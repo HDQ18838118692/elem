@@ -24,7 +24,7 @@
     <div class="btn" @click="tiao">
       <button>确认支付</button>
     </div>
-    <div class="warn" ref="tiao1">
+    <div class="warn animated bounce" ref="tiao1">
       <img src="./img/warn2.png" alt="">
       <p>当前环境无法支付，请打开官方APP进行付款</p>
       <button @click="qre">确认</button>
@@ -209,7 +209,7 @@
     left: 0.5rem;
     text-align: center;
     background-color: white;
-    font-size: 0.25rem;
+    font-size: 0.22rem;
     border: 0px solid;
     display: none;
   }

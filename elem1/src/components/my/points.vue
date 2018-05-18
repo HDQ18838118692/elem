@@ -1,7 +1,7 @@
 <template>
 <div class="points">
   <div class="header">
-    <router-link to="/"><</router-link>
+    <router-link to="/my"><</router-link>
     我的积分
   </div>
   <div class="main">
@@ -16,6 +16,11 @@
   <div class="footer">
     <p class="p3">最近30天积分记录</p>
   </div>
+  <div class="img">
+    <img src="./img/ren.png" alt="">
+    <p>最近30天无积分记录</p>
+    <p style="font-size: 0.15rem;font-weight: 100">快去下单赚取大量积分吧</p>
+  </div>
 </div>
 </template>
 
@@ -27,7 +32,7 @@
 
 <<style scoped>
   .points {
-    height: 8.3375rem;
+    height: 8.45rem;
     background-color: #f5f5f5;
     font-weight: 100;
   }
@@ -113,6 +118,20 @@
     border-radius: 3%;
     font-size: 0.2rem;
 
+  }
+  .img{
+    text-align: center;
+    margin-top: 1rem;
+
+  }
+  .img img{
+    width: 2.33rem;
+    height:1.47rem;
+  }
+  .img p{
+    margin-top: 0.2rem;
+    color: #666;
+    font-weight: 200;
   }
 </style>
 

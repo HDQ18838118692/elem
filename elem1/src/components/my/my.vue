@@ -1,35 +1,35 @@
 <template>
   <div class="mine">
     <div class="header">
-      <router-link to="/"><</router-link>
+      <span @click="go"><</span>
       我的
     </div>
     <router-link :to="url">
       <div class="phone">
-        <img :src="imgs" alt="" class="img1">
+        <img :src="imgs" alt="" class="img5">
         <p class="p1">{{phone}}</p>
-        <p class="p2"><img src="./img/bindphone.png" alt="" class="img2">暂无绑定手机号</p>
+        <p class="p2"><img src="./img/手机.png" alt="" class="img6">暂无绑定手机号</p>
         <span> ></span>
       </div>
     </router-link>
     <ul class="my">
       <router-link to="/balance">
-      <li>
-        <p><span class="span1">0.00</span>元</p>
-        <span>我的余额</span>
-      </li>
+        <li>
+          <p><span class="span1">0.00</span>元</p>
+          <span>我的余额</span>
+        </li>
       </router-link>
       <router-link to="/benefit">
-      <li>
-        <p><span class="span2">3</span>个</p>
-        <span>我的优惠</span>
-      </li>
+        <li>
+          <p><span class="span2">3</span>个</p>
+          <span>我的优惠</span>
+        </li>
       </router-link>
       <router-link to="/points">
-      <li>
-        <p><span class="span3">0</span>分</p>
-        <span>我的积分</span>
-      </li>
+        <li>
+          <p><span class="span3">0</span>分</p>
+          <span>我的积分</span>
+        </li>
       </router-link>
     </ul>
     <ul class="yh">
@@ -95,7 +95,7 @@
       return {
         phone: '登录/注册',
         imgs: require("./img/people.png"),
-        url:"/usermes"
+        url: "/usermes"
 
       }
     },
@@ -103,22 +103,22 @@
 //       if (JSON.parse(localStorage.getItem("arr"))) {
 //         this.phone = JSON.parse(localStorage.getItem("arr"))
 //       }
-console.log(this.$route.params.username)
+      console.log(this.$route.params.username)
       if (this.$route.params.username) {
         this.phone = this.$route.params.username
-         localStorage.setItem("arr", JSON.stringify(this.phone));
+        localStorage.setItem("arr", JSON.stringify(this.phone));
 //       console.log(this.phone)
-         if(this.phone==1||this.phone=='登录/注册'){
-         	this.url="/login"
-         	this.phone='登录/注册'
-         }
+        if (this.phone == 1 || this.phone == '登录/注册') {
+          this.url = "/login"
+          this.phone = '登录/注册'
+        }
       } else {
         this.phone = JSON.parse(localStorage.getItem("arr"));
 //       console.log(this.phone)
-         if(this.phone==1||this.phone=='登录/注册'){
-         	this.url="/login"
-         	this.phone='登录/注册'
-         }
+        if (this.phone == 1 || this.phone == '登录/注册') {
+          this.url = "/login"
+          this.phone = '登录/注册'
+        }
       }
     },
     methods: {
@@ -128,6 +128,9 @@ console.log(this.$route.params.username)
       qre(ev) {
         this.$refs.tiao1.style.display = "none";
 
+      },
+      go(){
+        history.go(-1);
       }
     }
   }
@@ -136,9 +139,14 @@ console.log(this.$route.params.username)
 <style scoped>
   .mine {
     width: 100%;
-    height: 7.7675rem;
+    height: 7.96rem;
     background-color: #f5f5f5;
     position: relative;
+  }
+
+  .img6 {
+    width: 0.28rem;
+    height: 0.3rem;
   }
 
   .warn {
@@ -186,7 +194,7 @@ console.log(this.$route.params.username)
     position: relative;
   }
 
-  .header a {
+  .header span {
     position: absolute;
     left: 0.1rem;
     color: white;
@@ -201,7 +209,7 @@ console.log(this.$route.params.username)
     overflow: hidden;
   }
 
-  .phone .img1 {
+  .phone .img5 {
     width: 0.73rem;
     height: 0.73rem;
     margin: 0.1rem 0.2rem;

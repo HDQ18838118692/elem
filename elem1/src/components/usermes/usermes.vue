@@ -45,12 +45,12 @@
         <span>退出登录</span>
       </button>
     </div>
-    <div class="warn" ref="tiao2">
+    <div class="warn animated bounceIn" ref="tiao2">
       <img src="./img/warn2.png" alt="">
       <p>请在手机APP中设置</p>
       <button @click="qre">确认</button>
     </div>
-    <div class="warn" ref="tiao1">
+    <div class="warn animated bounceIn" ref="tiao1">
       <img src="./img/warn2.png" alt="">
       <p>是否退出登录</p>
       <button @click="qre">确认</button>
@@ -101,11 +101,12 @@
       },
       qre(ev) {
         ev.target.parentNode.style.display = "none";
-console.log(1)
-      	  this.axios.get('http://cangdu.org:8001/v2/signout')
+        console.log(1)
+        this.axios.get('http://cangdu.org:8001/v2/signout')
           .then(response => {
-            console.log(response); })
-             this.$router.push({name:'my',params:{username:1}})
+            console.log(response);
+          })
+        this.$router.push({name: 'my', params: {username: 1}})
       },
       tiao2() {
         this.$refs.tiao2.style.display = "block";
@@ -115,7 +116,7 @@ console.log(1)
         Vue.axios.get(url).then((res) => {
           console.log(res)
         })
-     
+
       }
 
     }
@@ -126,7 +127,7 @@ console.log(1)
 <style scoped>
   .usermes {
     width: 100%;
-    height: 8.3375rem;
+    height: 8.45rem;
     background-color: #f5f5f5;
     position: relative;
 
