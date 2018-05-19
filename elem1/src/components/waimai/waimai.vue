@@ -472,6 +472,14 @@
     font-weight: bolder;
     background: #ffd930;
   }
+  .one22 span:nth-child(2){
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 1.4rem;
+    vertical-align: -0.05rem;
+  }
 
   .one31 {
     display: flex;

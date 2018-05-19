@@ -1,6 +1,6 @@
 <template>
 	<div class="gouwu">
-<div style="position: fixed;left: 0;top: 0;right: 0;z-index: 10;">
+<div style="position: fixed;left: 0;top: 0;z-index: 10;">
 		<div class="header" :style="'background-image:url('+`//elm.cangdu.org/img/${datas.image_path}`+');'">
       <div class="div1"></div>
 			<span @click="go" class="span1"><</span>
@@ -18,7 +18,7 @@
 		</div>
 		<div class="main">
      <router-link to="/sp"> <div class="mleft" @click="chcolor">商品</div></router-link>
-      <router-link to="/sp"> <div class="mright" @click="chcolor">评价</div></router-link>
+      <router-link :to="{name:'pj',query:{id:id}}"> <div class="mright" @click="chcolor">评价</div></router-link>
 
     </div>
     </div>
@@ -73,13 +73,14 @@
 </script>
 
 <style scoped>
+
 	.header {
-		/*width: 375px;*/
 		background-size: cover;
 		color: white;
 		overflow: hidden;
 		position: relative;
 		height: 1.325rem;
+    background: white;
 	}
   .div1{
     width: 100%;
@@ -140,7 +141,7 @@
     margin-right: 0.2rem;
   }
   .main{
-   /* width: 375px;*/
+    width: 375px;
     height: 0.7rem;
     overflow: hidden;
     display: flex;
@@ -151,7 +152,7 @@
   }
   .main >div{
     display: inline-block;
-  
+
     padding-bottom: 0.8rem;
     margin-bottom: 0.1rem;
     color: black;

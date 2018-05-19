@@ -1,13 +1,14 @@
 <template>
 
-
   <div class="sp">
 
     <div class="left2">
       <div class="left1">
         <ul class="left">
-          <li v-for="(data,index) in datas" @click="bai(index,$event)" class="li1" data="index">
-            <!--<div class="num" v-show="true">{{num[index]}}</div>-->
+          <li v-for="(data,index111) in datas" @click="bai(index111,$event)" class="li1" data="index">
+            <div class="num" v-for="arrrr in arrr1">
+              <span v-if="arrrr.wai==data.name">{{arrrr.num}}</span>
+            </div>
             <img :src='`https://fuss10.elemecdn.com/${data.icon_url}.jpeg`' alt=""> {{data.name}}
           </li>
         </ul>
@@ -15,7 +16,7 @@
     </div>
     <div class="right">
 
-      <ul v-for="(data,index1) in datas" class="uls">
+      <ul v-for="(data,index1111) in datas" class="uls">
         <div class="divh">
           <span class="span1">{{data.name}}</span>
           <span class="span2">{{data.description}}</span>
@@ -47,19 +48,20 @@
           </div>
           <div>
             <div v-if="arr.specfoods.length==1" class="gou2"
-                 @click="add1(datas.length,data.foods.length,index1,index,$event)">
+                 @click="add1(data.name,arr.specfoods[0].price,arr.name,datas.length,data.foods.length,index1111,index,$event)">
               <img src="./img/4.png" alt=""/>
             </div>
             <div class="gou3" v-if="arr.specfoods.length==1">
-              <img src="./img/5.png" alt="" @click="jian1(index,$event)"/>
-              <span class="gou4" v-if="arr1[index]">{{arr1[index]}}</span>
+              <img src="./img/5.png" alt="" @click="jian1(arr.name,arr.specfoods[0].price,arr.name,index,$event)"/>
+              <span class="gou4">{{arr2[index]}}</span>
             </div>
           </div>
           <div style="position: relative;">
-            <div v-if="arr.specfoods.length>1" class="gou1" @click="add2">
+            <div v-if="arr.specfoods.length>1" class="gou1" @click="add2(data.name,arr.specfoods[0].price,arr.specfoods[0].specs_name
+,$event)">
               选规格
             </div>
-            <!--<div class="maskx" @click="xiaoshi">
+            <div class="maskx" @click="xiaoshi">
               <div class="mask">
                 <div class="mask0">
                   <div class="mask2">
@@ -67,541 +69,847 @@
                     <div>规格</div>
                   </div>
                   <div class="mask1">
-										<span v-for="(price,index) in arr.specfoods" @click="qian(price.price,$event)" class="change">
+										<span v-for="(price,index) in arr.specfoods" @click="qian(data.name,price.specs_name,price.price,$event)"
+                          class="change">
 										{{price.specs_name}}
 									</span>
                   </div>
                   <div class="mask4">
                     <div><span>￥</span>{{money}}</div>
-                    <div>加入购物车</div>
+                    <div @click="join(data.name,arr.name,money,index,$event)">加入购物车</div>
                   </div>
                 </div>
               </div>
-            </div>-->
+            </div>
           </div>
 
         </li>
       </ul>
     </div>
     <div class="footer">
+      <div class="foot1"  v-show="hidd" style="position: absolute;left: 0;bottom:.6rem">
+        <div class="foot11">
+          <div class="foot111">
+            购物车
+          </div>
+          <div class="foot112">清空</div>
+        </div>
+        <ul v-if="arrr.length">
+          <li v-for="(aar,index) in arrr" class="foot12">
 
+            <div class="foot13">
+              {{aar.name}}
+            </div>
+            <div class="foot14">
+              ￥{{aar.price}}
+            </div>
+            <div class="foot15">
+
+              <div class="foot152"><img src="./img/5.png" alt="" @click="shanchu(aar.bigName,aar.name,$event)"/>
+
+                <span>{{aar.geshu}}</span>
+              </div>
+              <div class="foot151"><img src="./img/4.png" alt="" @click="tianjia(aar.bigName,aar.name,$event)"/></div>
+            </div>
+          </li>
+        </ul>
+      </div>
       <div class="foot2">
         <div>
           <div class="foot5" v-show="xx">{{index}}</div>
-          <img src="./img/2.png" alt=""/>
+          <img src="./img/2.png" alt="" @click="hidd=!hidd"/>
         </div>
       </div>
       <div class="foot3">
-        <div>￥{{this.price}}</div>
+        <div>￥{{price}}</div>
         <div>配送费￥5</div>
       </div>
       <div class="foot4">
-        <router-link to="#">去结算</router-link>
+        <router-link :to="{name:'order'}">去结算</router-link>
       </div>
     </div>
 
   </div>
 
-
-
 </template>
 
 <script>
 
+  import Vue from "vue";
+  var num=1
+  var xiabiao = -1
+  export default {
+    name: "sp",
+    data() {
+      return {
+        id: null,
+        datas: [],
+        h: 0,
+        num: [],
+        num1: [],
+        price: 0,
+        index: 0,
+        qian1: 0,
+        money: 20,
+        index1: 0,
+        xx: false,
+        arr2: [],
+        arr1: 0,
+        num2: [],
+        arrr: [],
+        name: "",
+        price1: 0,
+        geshu: 1,
+        arrr1:[],
+        bigName:"",
+        hidd:false
 
-	import Vue from "vue";
+      }
+    },
+    created() {
+      if (this.$route.params.id) {
+        this.id = this.$route.params.id
+        localStorage.setItem("id", JSON.stringify(this.id))
+      } else {
+        this.id = JSON.parse(localStorage.getItem("id"))
+      }
 
-	export default {
-		name: "sp",
-		data() {
-			return {
-				id: null,
-				datas: [],
-				h: 0,
-				num: [],
-				num1: [],
-				price: 0,
-				index: 0,
-				money: 20,
-				index1: 0,
-				xx: false,
-				arr: [],
-				arr1: [],
-				num2: []
-			}
-		},
-		created() {
-			if(this.$route.params.id) {
-				this.id = this.$route.params.id
-				localStorage.setItem("id", JSON.stringify(this.id))
-			} else {
-				this.id = JSON.parse(localStorage.getItem("id"))
-			}
+      let api1 = "http://cangdu.org:8001/shopping/v2/menu?restaurant_id=" + this.id;
+      console.log(api1)
+      Vue.axios.get(api1).then((res) => {
+        this.datas = res.data;
+        console.log(this.datas)
+      })
+    },
+    methods: {
+      hidd(){
+$(".foot11").css('display',"block")
+      },
+      bai(index, e) {
+        var uls = document.getElementsByClassName("uls")
+        if (e.target.tagName == "LI") {
+          $(".li1").css({
+            background: "rgb(232,232,232)",
+            opacity: 0.6
+          });
+          e.target.style.backgroundColor = "white";
+          e.target.style.opacity = 1;
+          this.h = 0
+          for (var i = 0; i < index; i++) {
+            this.h -= uls[i].offsetHeight
+          }
+          $(".right").css("top", this.h)
+        }
+      },
+      add1(bigName,price, name, length1, length, index1111, index, e) {
+        for (var i = 0; i < length; i++) {
+          this.arr2.push(0)
+        }
+
+console.log(bigName)
+        this.index++
+        this.xx = true
+        this.name = name
+        this.price1 = price
+        this.bigName=bigName
+        var fou = true
+        var fou1=true
+        for (var i = 0; i < this.arrr.length; i++) {
+          if(this.bigName==this.arrr[i].wai){
+          if (this.name == this.arrr[i].name){
+              this.arrr[i].geshu += 1
+              this.arr2[index]++;
+            if (this.arr2[index]) {
+              e.target.parentNode.parentNode.lastChild.style.display = "block"
+            }
+              fou = false
+          }
+          }
+        }
+        for (var i=0;i<this.arrr1.length;i++){
+          if(this.bigName==this.arrr1[i].wai){
+            this.arrr1[i].num++
+            fou1 = false
+          }
+        }
+        console.log(this.arrr1)
+        if (fou1){
+          num=1;
+          this.arrr1.push({
+            wai:this.bigName,
+            num:num
+          })
 
 
-			let api1 = "http://cangdu.org:8001/shopping/v2/menu?restaurant_id=" + this.id;
-			console.log(api1)
-			Vue.axios.get(api1).then((res) => {
-				this.datas = res.data;
-				console.log(this.datas)
-			})
-		},
-		methods: {
-			bai(index, e) {
-				var uls = document.getElementsByClassName("uls")
-				if(e.target.tagName == "LI") {
-					$(".li1").css({
-						background: "rgb(232,232,232)",
-						opacity: 0.6
-					});
-					e.target.style.backgroundColor = "white";
-					e.target.style.opacity = 1;
-					this.h = 0
-					for(var i = 0; i < index; i++) {
-						this.h -= uls[i].offsetHeight
-					}
-					$(".right").css("top", this.h)
-				}
-			},
-			add1(length1, length, index1, index, e) {
+        }
 
-			},
-			add2(e) {
-				e.target.parentNode.lastChild.style.display = "block"
-			},
-			jian1(index, e) {
-				this.arr1[index] -= 2
-				if(this.arr1[index] <= 0) {
-					this.arr1[index] = 0
-					e.target.parentNode.style.display = "none"
-				}
-				this.index -= 2
-				if(this.index <= 0) {
-					this.index = 0
-					this.xx = false
-				}
-			},
-			xiaoshi(e) {
-				if(e.target.className == "maskx") {
-					e.target.style.display = "none"
-				}
-			},
-			qian(qian, e) {
-				var change = document.getElementsByClassName("change")
-				console.log(qian)
-				this.money = qian
-				console.log(e.target)
-				for(var i = 0; i < change.length; i++) {
-					change[i].style.border = "1px solid lightgray"
-					change[i].style.color = "black"
-				}
-				e.target.style.border = "1px solid lightblue"
-				e.target.style.color = "lightblue"
-			}
+        if (fou) {
+          this.arr2[index]=0
+          this.arr2[index]++;
+          if (this.arr2[index]) {
+            e.target.parentNode.parentNode.lastChild.style.display = "block"
+          }
+          xiabiao += 1
+          this.arrr.push({
+            name: this.name,
+            price: this.price1,
+            geshu: this.geshu,
+            xiabiao: xiabiao,
+            index: index,
+            wai:this.bigName
+          })
+        }
+        console.log(this.arrr)
+        console.log(this.arr2)
+        this.price += this.price1
+      },
+      add2(big,price, name, e) {
+        e.target.parentNode.lastChild.style.display = "block";
 
-		}
-	}
+
+      },
+      jian1(bigName,price, name, index, e) {
+        this.arr2[index] -= 1
+        if (this.arr2[index] <= 0) {
+          this.arr2[index] = 0
+          e.target.parentNode.style.display = "none"
+        }
+        this.index -= 1
+        if (this.index <= 0) {
+          this.index = 0
+          this.xx = false
+        }
+        this.name = name
+        this.price1 = price
+        this.price -= this.price1
+        if (this.price <= 0) {
+          this.price = 0
+        }
+        this.name = name
+        this.price1 = price
+
+
+        for (var i = 0; i < this.arrr.length; i++) {
+          if(this.bigName==this.arrr[i].wai){
+            if (this.name == this.arrr[i].name){
+            this.arrr[i].geshu -= 1
+            if (this.arrr[i].geshu == 0) {
+              this.arrr.splice(this.arrr[i].xiabiao, 1)
+              xiabiao-=1
+            }
+            }
+          }
+        }
+        for (var i=0;i<this.arrr1.length;i++){
+          if(this.bigName==this.arrr1[i].wai){
+            this.arrr1[i].num-=1
+          }
+        }
+
+
+      },
+      xiaoshi(e) {
+        if (e.target.className == "maskx") {
+          e.target.style.display = "none"
+        }
+      },
+      qian(bigName,name, qian, e) {
+        var change = document.getElementsByClassName("change")
+        this.money = qian
+        this.price1 = qian
+        //				console.log(name)
+        this.name = name
+
+        for (var i = 0; i < change.length; i++) {
+          change[i].style.border = "1px solid lightgray"
+          change[i].style.color = "black"
+        }
+        e.target.style.border = "1px solid lightblue"
+        e.target.style.color = "lightblue"
+        this.qian1 = qian
+
+      },
+      join(bigName,name,money,index, e) {
+        this.index++
+        this.xx = true
+        e.target.parentNode.parentNode.parentNode.parentNode.style.display = "none"
+        this.name = name
+        console.log(name)
+        this.price1 = money
+        this.bigName=bigName
+        var fou = true
+        var fou1=true
+        for (var i = 0; i < this.arrr.length; i++) {
+          if(this.bigName==this.arrr[i].wai){
+            if (this.name == this.arrr[i].name){
+              this.arrr[i].geshu += 1
+              // this.arr2[index]++;
+              // if (this.arr2[index]) {
+              //   e.target.parentNode.parentNode.lastChild.style.display = "block"
+              // }
+              fou = false
+            }
+          }
+        }
+        for (var i=0;i<this.arrr1.length;i++){
+          if(this.bigName==this.arrr1[i].wai){
+            this.arrr1[i].num++
+            fou1 = false
+          }
+        }
+        console.log(this.arrr1)
+        if (fou1){
+          num=1;
+          this.arrr1.push({
+            wai:this.bigName,
+            num:num
+          })
+
+
+        }
+
+        if (fou) {
+          this.arr2[index]=0
+          this.arr2[index]++;
+          if (this.arr2[index]) {
+            e.target.parentNode.parentNode.lastChild.style.display = "block"
+          }
+          xiabiao += 1
+          this.arrr.push({
+            name: this.name,
+            price: this.price1,
+            geshu: this.geshu,
+            xiabiao: xiabiao,
+            index: index,
+            wai:this.bigName
+          })
+        }
+        console.log(this.arrr)
+        console.log(this.arr2)
+        this.price += this.price1
+      },
+      tianjia(bigName,name, e) {
+        for (var i = 0; i < this.arrr.length; i++) {
+          if (bigName==this.arrr[i].bigName){
+          if (name == this.arrr[i].name) {
+            this.arrr[i].geshu += 1
+            this.arr2[this.arrr[i].index] += 1
+            this.price+=this.arrr[i].price
+            this.index+=1
+          }
+          }
+        }
+        for (var i=0;i< this.arrr.length;i++){
+          if (bigName==this.arrr[i].bigName){
+            this.arrr1[i].num+=1
+          }
+        }
+        console.log(this.arrr)
+      },
+      shanchu(bigName,name, e) {
+        for (var i = 0; i < this.arrr.length; i++) {
+          if (bigName==this.arrr[i].bigName){
+          if (name == this.arrr[i].name) {
+            this.arrr[i].geshu -= 1
+            this.arr2[this.arrr[i].index] -= 1
+            console.log(this.arrr[i].xiabiao)
+            console.log(this.arrr[i].geshu)
+            this.price-=this.arrr[i].price
+            this.index-=1
+            if (this.index==0){
+              this.xx=false
+            }
+            if (this.arrr[i].geshu == 0) {
+             $(".gou3").css("display","none")
+              var ii = this.arrr[i].xiabiao
+              this.arrr.splice(this.arrr[i].xiabiao, 1)
+              xiabiao-=1
+              for (var i = 0; i < this.arrr.length; i++) {
+                if (i >= ii) {
+                  this.arrr[i].xiabiao -= 1
+                }
+              }
+            }
+          }
+          }
+          if (bigName==this.arrr1[i].bigName) {
+            this.arrr1[i].num-=1
+          }
+
+        }
+
+      }
+
+    }
+  }
 </script>
 
 <style scoped>
-	.mask0 {
-		width: 92%;
-		margin: 0 auto;
-	}
+  .foot1 {
+    width: 100%;
+    background: white;
+  }
 
-	.maskx {
-		width: 4.7rem;
-		height: 8.3rem;
-		background: rgba(0, 0, 0, 0.2);
-		position: fixed;
-		left: 0;
-		top: 0;
-		z-index: 100000;
-		display: none;
-	}
+  .foot11 {
+    margin: 0 auto;
+    display: flex;
+    height: 0.6rem;
+    background: #f5f5f5;
+    justify-content: space-around;
+  }
 
-	.mask1 {
-		overflow: hidden;
-		text-align: left;
-	}
+  .foot111, .foot112 {
+    line-height: 0.6rem;
+    color: silver;
+  }
 
-	.mask1 span {
-		display: inline-block;
-		font-size: 0.15rem;
-		border: 1px solid lightgray;
-		padding: 0.1rem 0.1rem;
-		border-radius: 0.1rem;
-		margin-left: 0.1rem;
-		margin-top: 0.1rem;
-	}
+  .foot112 {
+    margin-left: 3.2rem;
+  }
 
-	.mask1 span:nth-child(1) {
-		border: 1px solid lightblue;
-		color: lightblue;
-	}
+  .foot151 img {
+    width: 0.25rem;
+    vertical-align: -0.05rem;
+  }
 
-	.mask2 {
-		margin-top: 0.1rem;
-		font-size: 0.2rem;
-		text-align: center;
-	}
+  .foot152 img {
+    width: 0.25rem;
+    vertical-align: -0.05rem;
+  }
 
-	.mask2 div {
-		width: 0.4rem;
-		font-size: 0.18rem;
-	}
+  .foot13, .foot14 {
+    line-height: 0.6rem;
+  }
 
-	.mask4 {
-		overflow: hidden;
-		margin-top: 0.2rem;
-		height: 0.6rem;
-	}
+  .foot13 {
+    width: 2.5rem;
+    margin-left: 0.1rem;
+  }
 
-	.mask4 div:nth-child(1) {
-		float: left;
-		font-size: 0.2rem;
-		line-height: 0.5rem;
-		color: orange;
-	}
+  .foot14 {
+    margin-left: 0.3rem;
+    color: orange;
+  }
 
-	.mask4 div:nth-child(1) span {
-		font-size: 0.1rem;
-	}
+  .foot152 {
+    width: 0.55rem;
+  }
 
-	.mask4 div:nth-child(2) {
-		float: right;
-		font-size: 0.18rem;
-		background: lightblue;
-		padding: 0.05rem 0.1rem;
-		border-radius: 0.05rem;
-	}
+  .foot15 {
+    display: flex;
+    height: 0.6rem;
+    line-height: 0.6rem;
+    margin-left: 0.4rem;
+  }
 
-	.mask {
-		position: absolute;
-		width: 3rem;
-		left: 0.8rem;
-		z-index: 22222;
-		background: yellow;
-		top: 4rem;
-	}
+  .foot12 {
+    display: flex;
+  }
 
-	.gou4 {
-		position: absolute;
-		right: 0.50rem;
-		top: 0.52rem;
-	}
+  .mask0 {
+    width: 92%;
+    margin: 0 auto;
+  }
 
-	.gou1 {
-		width: 0.7rem;
-		height: 0.3rem;
-		background: lightblue;
-		font-size: 0.1rem;
-		line-height: 0.3rem;
-		text-align: center;
-		position: absolute;
-		right: 0.2rem;
-		top: 0.5rem;
-	}
+  .maskx {
+    width: 4.7rem;
+    height: 8.3rem;
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 100000;
+    display: none;
+  }
 
-	.lis .gou3 {
-		display: none;
-	}
+  .mask1 {
+    overflow: hidden;
+    text-align: left;
+  }
 
-	.lis .gou2 img {
-		width: 0.25rem;
-		height: 0.25rem;
-		position: absolute;
-		right: 0.2rem;
-		top: 0.5rem;
-	}
+  .mask1 span {
+    display: inline-block;
+    font-size: 0.15rem;
+    border: 1px solid lightgray;
+    padding: 0.1rem 0.1rem;
+    border-radius: 0.1rem;
+    margin-left: 0.1rem;
+    margin-top: 0.1rem;
+  }
 
-	.lis .gou3 img {
-		width: 0.25rem;
-		height: 0.25rem;
-		position: absolute;
-		right: 0.7rem;
-		top: 0.5rem;
-	}
+  .mask1 span:nth-child(1) {
+    border: 1px solid lightblue;
+    color: lightblue;
+  }
 
-	.footer {
-		width: 100%;
-		height: 0.6rem;
-		background: black;
-		position: fixed;
-		bottom: 0;
-		left: 0;
-		display: flex;
-		justify-content: space-between;
-	}
+  .mask2 {
+    margin-top: 0.1rem;
+    font-size: 0.2rem;
+    text-align: center;
+  }
 
-	.foot2 {
-		width: 0.7rem;
-		height: 0.7rem;
-		background: black;
-		position: absolute;
-		left: 0.2rem;
-		bottom: 0.15rem;
-		z-index: 2222;
-		border-radius: 0.35rem;
-	}
+  .mask2 div {
+    width: 0.4rem;
+    font-size: 0.18rem;
+  }
 
-	.foot2 div {
-		width: 0.6rem;
-		height: 0.6rem;
-		border-radius: 0.3rem;
-		background: blue;
-		margin: 0 auto;
-		margin-top: 0.05rem;
-	}
+  .mask4 {
+    overflow: hidden;
+    margin-top: 0.2rem;
+    height: 0.6rem;
+  }
 
-	.foot2 .foot5 {
-		position: absolute;
-		width: 0.2rem;
-		height: 0.2rem;
-		text-align: center;
-		color: white;
-		font-weight: 100;
-		font-size: 0.18rem;
-		line-height: 0.2rem;
-		background: red;
-		top: 0;
-		right: 0;
-	}
+  .mask4 div:nth-child(1) {
+    float: left;
+    font-size: 0.2rem;
+    line-height: 0.5rem;
+    color: orange;
+  }
 
-	.foot2 img {
-		width: 0.5rem;
-		margin-top: 0.05rem;
-		margin-left: 0.03rem;
-	}
+  .mask4 div:nth-child(1) span {
+    font-size: 0.1rem;
+  }
 
-	.foot3 div {
-		color: white;
-		margin-top: 0.1rem;
-		margin-left: 1.1rem;
-	}
+  .mask4 div:nth-child(2) {
+    float: right;
+    font-size: 0.18rem;
+    background: lightblue;
+    padding: 0.05rem 0.1rem;
+    border-radius: 0.05rem;
+  }
 
-	.foot3 div:nth-child(1) {
-		font-size: 0.23n rem;
-	}
+  .mask {
+    position: absolute;
+    width: 3rem;
+    left: 0.8rem;
+    z-index: 22222;
+    background: yellow;
+    top: 4rem;
+  }
 
-	.foot3 div:nth-child(2) {
-		font-size: 0.15rem;
-		font-weight: 100;
-	}
+  .gou4 {
+    position: absolute;
+    right: 0.50rem;
+    top: 0.52rem;
+  }
 
-	.foot4 {
-		width: 1.5rem;
-		height: 0.6rem;
-		background: greenyellow;
-		text-align: center;
-		line-height: 0.6rem;
-	}
+  .gou1 {
+    width: 0.7rem;
+    height: 0.3rem;
+    background: lightblue;
+    font-size: 0.1rem;
+    line-height: 0.3rem;
+    text-align: center;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.5rem;
+  }
 
-	.foot4 a {
-		display: inline-block;
-		width: 1.5rem;
-		height: 0.6rem;
-		color: white;
-	}
+  .gou3 {
+    display: none;
+  }
 
-	.new3 {
-		position: relative;
-	}
+  .gou2 img {
+    width: 0.25rem;
+    height: 0.25rem;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.5rem;
+  }
 
-	.new1 {
-		display: block;
-		width: 0rem;
-		height: 0rem;
-		position: absolute;
-		left: -0.12rem;
-		top: -0.2rem;
-		text-align: center;
-		border-right: 0.4rem solid transparent;
-	}
+  .lis .gou2 img {
+    width: 0.25rem;
+    height: 0.25rem;
+    position: absolute;
+    right: 0.2rem;
+    top: 0.5rem;
+  }
 
-	.new1 span {
-		display: inline-block;
-		position: absolute;
-		font-size: 0.05rem;
-		transform: rotateZ(-45deg);
-		width: 0.5rem;
-		height: 0.2rem;
-		top: -0.33rem;
-		left: -0.1rem;
-	}
+  .lis .gou3 img {
+    width: 0.25rem;
+    height: 0.25rem;
+    position: absolute;
+    right: 0.7rem;
+    top: 0.5rem;
+  }
 
-	.new2 {
-		position: absolute;
-		right: 0.2rem;
-		font-size: 0.1rem;
-		border-radius: 0.1rem;
-	}
+  .footer {
+    width: 375px;
+    height: 0.6rem;
+    background: black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+  }
 
-	.num {
-		position: absolute;
-		top: 0.1rem;
-		right: 0.1rem;
-		width: 0.2rem;
-		height: 0.2rem;
-		background: red;
-		line-height: 0.22rem;
-		text-align: center;
-		border-radius: 0.1rem;
-		color: white;
-	}
+  .foot2 {
+    width: 0.7rem;
+    height: 0.7rem;
+    background: black;
+    position: absolute;
+    left: 0.2rem;
+    bottom: 0.15rem;
+    z-index: 2222;
+    border-radius: 0.35rem;
+  }
 
-	.sp {
-		width: 100%;
-		border-top: 1px solid #ededed;
-		height: 8.3375rem;
-	}
+  .foot2 div {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 0.3rem;
+    background: blue;
+    margin: 0 auto;
+    margin-top: 0.05rem;
+  }
 
-	ul {
-		float: left;
-	}
+  .foot2 .foot5 {
+    position: absolute;
+    width: 0.2rem;
+    height: 0.2rem;
+    text-align: center;
+    color: white;
+    font-weight: 100;
+    font-size: 0.18rem;
+    line-height: 0.2rem;
+    background: red;
+    top: 0;
+    right: 0;
+  }
 
-	.left1 {
-		height: 6rem;
-		width: 100%;
-		position: absolute;
-		left: 0;
-		top: 0;
-		overflow-y: auto;
-		overflow-x: hidden;
-	}
+  .foot2 img {
+    width: 0.5rem;
+    margin-top: 0.05rem;
+    margin-left: 0.03rem;
+  }
 
-	.left1::-webkit-scrollbar {
-		display: none
-	}
+  .foot3 div {
+    color: white;
+    margin-top: 0.1rem;
+    margin-left: 1.1rem;
+  }
 
-	.left {
-		position: absolute;
-		top: 0;
-	}
+  .foot3 div:nth-child(1) {
+    font-size: 0.23rem;
+  }
 
-	.left2 {
-		overflow: hidden;
-		width: 1.1rem;
-		position: fixed;
-		top: 2rem;
-		left: 0;
-		height: 6rem;
-	}
+  .foot3 div:nth-child(2) {
+    font-size: 0.15rem;
+    font-weight: 100;
+  }
 
-	.left li {
-		height: 0.8rem;
-		width: 1rem;
-		padding-left: 0.1rem;
-		line-height: 0.8rem;
-		border-bottom: 0.02rem solid #ededed;
-		border-left: 0.02rem solid #f8f8f8;
-		opacity: 0.5;
-		font-size: 0.17rem;
-		background-color: rgb(232, 232, 232);
-		overflow: hidden;
-	}
+  .foot4 {
+    width: 1.5rem;
+    height: 0.6rem;
+    background: greenyellow;
+    text-align: center;
+    line-height: 0.6rem;
+  }
 
-	.left li:first-child {
-		background-color: white;
-		opacity: 1;
-		opacity: 1;
-	}
+  .foot4 a {
+    display: inline-block;
+    width: 1.5rem;
+    height: 0.6rem;
+    color: white;
+  }
 
-	.right {
-		width: 76%;
-		background-color: white;
-		margin-top: 2rem;
-		position: absolute;
-		right: 0;
-	}
+  .new3 {
+    /*position: relative;*/
+  }
 
-	.right ul {
-		width: 100%;
-		/*  margin-left:0.1rem;*/
-	}
+  .new1 {
+    display: block;
+    width: 0rem;
+    height: 0rem;
+    position: absolute;
+    left: -0.12rem;
+    top: -0.2rem;
+    text-align: center;
+    border-right: 0.4rem solid transparent;
+  }
 
-	.right .divh {
-		height: 0.6rem;
-		background-color: rgb(232, 232, 232);
-		line-height: 0.6rem;
-		width: 100%;
-	}
+  .new1 span {
+    display: inline-block;
+    position: absolute;
+    font-size: 0.05rem;
+    transform: rotateZ(-45deg);
+    width: 0.5rem;
+    height: 0.2rem;
+    top: -0.33rem;
+    left: -0.1rem;
+  }
 
-	.right .span1 {
-		margin-left: 0.15rem;
-		opacity: 0.7;
-		font-weight: bolder;
-	}
+  .new2 {
+    position: absolute;
+    right: 0.2rem;
+    font-size: 0.1rem;
+    border-radius: 0.1rem;
+  }
 
-	.right .span2 {
-		font-size: 0.15rem;
-		opacity: 0.5;
-	}
+  .num {
+    position: absolute;
+    top: 0.1rem;
+    right: 0.1rem;
+    width: 0.2rem;
+    height: 0.2rem;
+    background: red;
+    line-height: 0.22rem;
+    text-align: center;
+    border-radius: 0.1rem;
+    color: white;
+  }
 
-	.li1 img {
-		width: 0.15rem;
-	}
+  .sp {
+    width: 100%;
+    border-top: 1px solid #ededed;
+    height: 8.3375rem;
+  }
 
-	.li1 {
-		position: relative;
-	}
+  ul {
+    float: left;
+  }
 
-	.right li img {
-		width: 0.6rem;
-		height: 0.6rem;
-	}
+  .left1 {
+    height: 6rem;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 
-	.lis {
-		height: 1.65rem;
-		border-bottom: 1px solid #e6e6e6;
-		margin-top: 0.2rem;
-		margin-left: 0.1rem;
-		position: relative;
-	}
+  .left1::-webkit-scrollbar {
+    display: none
+  }
 
-	.lis img {
-		float: left;
-	}
+  .left {
+    position: absolute;
+    top: 0;
+  }
 
-	.arrs {
-		float: left;
-		margin-left: 0.1rem;
-	}
+  .left2 {
+    overflow: hidden;
+    width: 1.1rem;
+    position: fixed;
+    top: 2rem;
+    left: 0;
+    height: 6rem;
+  }
 
-	.this1 {}
+  .left li {
+    height: 0.8rem;
+    width: 1rem;
+    padding-left: 0.1rem;
+    line-height: 0.8rem;
+    border-bottom: 0.02rem solid #ededed;
+    border-left: 0.02rem solid #f8f8f8;
+    opacity: 0.5;
+    font-size: 0.17rem;
+    background-color: rgb(232, 232, 232);
+    overflow: hidden;
+  }
 
-	.arrs .this2 {
-		font-size: 0.12rem;
-		color: #b6b6b6;
-		margin-top: 0.1rem;
-	}
+  .left li:first-child {
+    background-color: white;
+    opacity: 1;
+  }
 
-	.this3 {
-		font-size: 0.15rem;
-		margin-top: 0.1rem;
-	}
+  .right {
+    width: 76%;
+    background-color: white;
+    margin-top: 2rem;
+    position: absolute;
+    right: 0;
+  }
 
-	.this4 {
-		font-size: 0.1rem;
-		margin-top: 0.15rem;
-	}
+  .right ul {
+    width: 100%;
+    /*  margin-left:0.1rem;*/
+  }
 
-	.this4 span {
-		border-radius: 0.1rem;
-	}
+  .right .divh {
+    height: 0.6rem;
+    background-color: rgb(232, 232, 232);
+    line-height: 0.6rem;
+    width: 100%;
+  }
 
-	.this5 span {
-		color: rgb(241, 136, 79);
-	}
+  .right .span1 {
+    margin-left: 0.15rem;
+    opacity: 0.7;
+    font-weight: bolder;
+  }
 
-	.this5 {
-		margin-top: 0.2rem;
-	}
+  .right .span2 {
+    font-size: 0.15rem;
+    opacity: 0.5;
+  }
+
+  .li1 img {
+    width: 0.15rem;
+  }
+
+  .li1 {
+    position: relative;
+  }
+
+  .right li img {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+
+  .lis {
+    height: 1.65rem;
+    border-bottom: 1px solid #e6e6e6;
+    margin-top: 0.2rem;
+    margin-left: 0.1rem;
+    position: relative;
+    /*overflow: hidden;*/
+  }
+
+  .lis img {
+    float: left;
+  }
+
+  .arrs {
+    float: left;
+    margin-left: 0.1rem;
+  }
+
+  .this1 {
+  }
+
+  .arrs .this2 {
+    font-size: 0.12rem;
+    color: #b6b6b6;
+    margin-top: 0.1rem;
+  }
+
+  .this3 {
+    font-size: 0.15rem;
+    margin-top: 0.1rem;
+  }
+
+  .this4 {
+    font-size: 0.1rem;
+    margin-top: 0.15rem;
+    width: 2.7rem;
+    overflow: hidden;
+  }
+
+  .this4 span {
+    display: inline-block;
+    border-radius: 0.1rem;
+    /*overflow: hidden;*/
+  }
+
+  .this5 span {
+    color: rgb(241, 136, 79);
+  }
+
+  .this5 {
+    margin-top: 0.2rem;
+  }
 </style>
-
-
-
-
-
-
-

@@ -21,6 +21,7 @@ import addDetail from "@/components/addDetail/addDetail";
 import jifen from "@/components/jifen/jifen";
 import gouwu from "@/components/gouwu/gouwu";
 import sp from "@/components/gouwu/sp";
+import pj from '@/components/gouwu/pj'
 import service from "@/components/my/service";
 import questiondetail from "@/components/my/questiondetail"
 import vipcard from "@/components/my/vipcard";
@@ -28,11 +29,16 @@ import pay from "@/components/my/pay";
 import balance from "@/components/my/balance";
 import benefit from "@/components/my/benefit";
 import points from "@/components/my/points";
+
 import hongbao from "@/components/my/hongbao";
 import quan from "@/components/my/quan";
 import exchange from "@/components/my/exchange";
 import commend from "@/components/my/commend";
 import hbhist from "@/components/my/hbhist";
+
+
+import order from "@/components/order/order";
+import beizhu from "@/components/order/beizhu";
 
 Vue.use(Router)
 export default new Router({
@@ -127,7 +133,11 @@ export default new Router({
           path: '/sp',
           name: 'sp',
           component: sp,
-
+        },
+        {
+        	path:'/pj',
+        	name:'pj',
+        	component:pj
         }
       ]
     },
@@ -149,6 +159,7 @@ export default new Router({
       path: '/pay',
       name: 'pay',
       component: pay
+
     }, {
       path: '/forget',
       name: 'forget',
@@ -191,6 +202,34 @@ export default new Router({
       path: '/hbhist',
       name: 'hbhist',
       component: hbhist
+
+    },{
+    path:'/forget',
+      name:'forget',
+      component:forget
+    },{
+    path:'/points',
+      name:'points',
+      component:points
+    },{
+      path:'/balance',
+      name:'balance',
+      component:balance
+    },{
+      path:'/benefit',
+      name:'benefit',
+      component:benefit
+    },
+    {
+      path:'/order',
+      name:"order",
+      component:order
+    },
+    {
+      path:'/beizhu',
+      name:'beizhu',
+      component:beizhu
+
     }
 
   ]
