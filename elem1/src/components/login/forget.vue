@@ -108,7 +108,7 @@
   }
 
   .main input {
-    width: 100%;
+    width: 95%;
     height: 0.6rem;
     background-color: white;
     font-size: 0.2rem;
@@ -142,6 +142,7 @@
     right: 0.1rem;
     font-size: 0.2rem;
     bottom: 0.35rem;
+    font-weight: 200;
   }
 
   .yz2 {
@@ -150,7 +151,7 @@
     bottom: 0rem;
     font-size: 0.2rem;
     color: #3b95e9;
-
+    font-weight: 200;
   }
 
   .yz {

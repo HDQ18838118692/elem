@@ -28,6 +28,11 @@ import pay from "@/components/my/pay";
 import balance from "@/components/my/balance";
 import benefit from "@/components/my/benefit";
 import points from "@/components/my/points";
+import hongbao from "@/components/my/hongbao";
+import quan from "@/components/my/quan";
+import exchange from "@/components/my/exchange";
+import commend from "@/components/my/commend";
+import hbhist from "@/components/my/hbhist";
 
 Vue.use(Router)
 export default new Router({
@@ -144,22 +149,48 @@ export default new Router({
       path: '/pay',
       name: 'pay',
       component: pay
-    },{
-    path:'/forget',
-      name:'forget',
-      component:forget
-    },{
-    path:'/points',
-      name:'points',
-      component:points
-    },{
-      path:'/balance',
-      name:'balance',
-      component:balance
-    },{
-      path:'/benefit',
-      name:'benefit',
-      component:benefit
+    }, {
+      path: '/forget',
+      name: 'forget',
+      component: forget
+    }, {
+      path: '/points',
+      name: 'points',
+      component: points
+    },
+    {
+      path: '/balance',
+      name: 'balance',
+      component: balance
+    },
+    {
+      path: '/benefit',
+      name: 'benefit',
+      component: benefit,
+      children: [{
+        path: '/',
+        name: 'hongbao',
+        component: hongbao
+      }
+        , {
+          path: '/quan',
+          name: 'quan',
+          component: quan
+        }
+      ]
+    },
+    {
+      path: '/exchange',
+      name: 'exchange',
+      component: exchange
+    }, {
+      path: '/commend',
+      name: 'commend',
+      component: commend
+    }, {
+      path: '/hbhist',
+      name: 'hbhist',
+      component: hbhist
     }
 
   ]

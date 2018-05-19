@@ -177,6 +177,7 @@
     margin-right: 0.2rem;
     font-size: 0.2rem;
     color: #3b95e9;
+    font-weight: 200;
   }
 
   form .a1 {

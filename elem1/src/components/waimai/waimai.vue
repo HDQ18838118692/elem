@@ -13,6 +13,7 @@
         <router-link to="/">{{cun.name}}</router-link>
         <router-link to="/">
           <i class="el-icon-star-on"></i>
+
         </router-link>
       </div>
     </div>
