@@ -106,8 +106,10 @@
     </div>
     <div class="or_foot21">
       <div  class="or_foot22">
+        <router-link :to="{name:'fp'}">
        <span>发票抬头</span>
         <span>不需要开发票&nbsp></span>
+        </router-link>
       </div>
     </div>
     <div class="last">
@@ -132,7 +134,9 @@
     },
     methods:{
       shop1(){
-        history.go(-1)
+        this.$router.push({
+          name:"sp"
+        })
       }
     }
   }
