@@ -98,8 +98,10 @@
     methods:{
       blue(id,e){
         $(".blue1").css("background","#ebf5ff")
+
+var blue1=document.getElementsByClassName("blue1")[2]
+        blue1.style.background="#f5f5f5"
         e.target.style.background="#3190e8"
-var blue1=document.getElementsByClassName()
       }
     },
     created() {
@@ -129,6 +131,9 @@ var blue1=document.getElementsByClassName()
 </script>
 
 <style scoped>
+  .blue1:nth-child(1){
+    background: #3190e8;
+  }
 .xx_one{
   width: 100%;
   background: white;

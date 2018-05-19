@@ -29,7 +29,8 @@ import pay from "@/components/my/pay";
 import balance from "@/components/my/balance";
 import benefit from "@/components/my/benefit";
 import points from "@/components/my/points";
-
+import order from "@/components/order/order";
+import beizhu from "@/components/order/beizhu";
 Vue.use(Router)
 export default new Router({
   routes: [
@@ -165,6 +166,16 @@ export default new Router({
       path:'/benefit',
       name:'benefit',
       component:benefit
+    },
+    {
+      path:'/order',
+      name:"order",
+      component:order
+    },
+    {
+      path:'/beizhu',
+      name:'beizhu',
+      component:beizhu
     }
 
   ]
