@@ -40,6 +40,7 @@ import hbhist from "@/components/my/hbhist";
 
 import order from "@/components/order/order";
 import beizhu from "@/components/order/beizhu";
+import fp from "@/components/order/fp"
 
 Vue.use(Router)
 export default new Router({
@@ -231,10 +232,17 @@ export default new Router({
       name: 'beizhu',
       component: beizhu
 
+
     }, {
       path: '/addaddress',
       name: 'addaddress',
       component: addaddress
+
+    },
+    {
+      path:"/fp",
+      name:"fp",
+      component:fp
     }
 
   ]
