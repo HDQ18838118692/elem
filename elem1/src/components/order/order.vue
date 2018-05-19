@@ -10,7 +10,7 @@
       </div>
     </div>
     <div class="or_head2">
-      <router-link to="#">
+      <router-link to="/addaddress">
         <div class="or_head3">
           <img src="./img/1.png" alt="">
           <span>请添加一个收货地址</span>

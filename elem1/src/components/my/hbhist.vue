@@ -60,7 +60,7 @@
   .imgk {
     position: absolute;
     right: 0.3rem;
-    z-index: 555;
+    z-index: 1;
     width: 0.85rem;
 
   }
@@ -73,7 +73,9 @@
     text-align: center;
     color: white;
     font-size: 0.22rem;
-    position: relative;
+    position: fixed;
+    z-index:2;
+    top: 0;
   }
 
   .header span {
@@ -130,7 +132,7 @@
     float: left;
     height: 1.15rem;
     margin-top: 0.3rem;
-    width: 0.9rem;
+    width: 1rem;
     padding: 0 0.2rem;
   }
 
@@ -139,7 +141,7 @@
     height: 0.925rem;
     margin-top: 0.3rem;
     padding-left: 0.2rem;
-    width: 2.8rem;
+    width: 2.5rem;
     border-left: 1px dotted #ccc;
   }
 

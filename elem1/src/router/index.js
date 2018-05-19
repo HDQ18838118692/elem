@@ -18,6 +18,7 @@ import address1 from "@/components/address1/address1";
 import add from "@/components/add/add";
 
 import addDetail from "@/components/addDetail/addDetail";
+import addaddress from "@/components/addDetail/addaddress";
 import jifen from "@/components/jifen/jifen";
 import gouwu from "@/components/gouwu/gouwu";
 import sp from "@/components/gouwu/sp";
@@ -135,9 +136,9 @@ export default new Router({
           component: sp,
         },
         {
-        	path:'/pj',
-        	name:'pj',
-        	component:pj
+          path: '/pj',
+          name: 'pj',
+          component: pj
         }
       ]
     },
@@ -203,33 +204,37 @@ export default new Router({
       name: 'hbhist',
       component: hbhist
 
-    },{
-    path:'/forget',
-      name:'forget',
-      component:forget
-    },{
-    path:'/points',
-      name:'points',
-      component:points
-    },{
-      path:'/balance',
-      name:'balance',
-      component:balance
-    },{
-      path:'/benefit',
-      name:'benefit',
-      component:benefit
+    }, {
+      path: '/forget',
+      name: 'forget',
+      component: forget
+    }, {
+      path: '/points',
+      name: 'points',
+      component: points
+    }, {
+      path: '/balance',
+      name: 'balance',
+      component: balance
+    }, {
+      path: '/benefit',
+      name: 'benefit',
+      component: benefit
     },
     {
-      path:'/order',
-      name:"order",
-      component:order
+      path: '/order',
+      name: "order",
+      component: order
     },
     {
-      path:'/beizhu',
-      name:'beizhu',
-      component:beizhu
+      path: '/beizhu',
+      name: 'beizhu',
+      component: beizhu
 
+    }, {
+      path: '/addaddress',
+      name: 'addaddress',
+      component: addaddress
     }
 
   ]
